@@ -4,11 +4,17 @@
              xmlns:local="clr-namespace:MzansiGopro.Models"
              xmlns:vm="clr-namespace:MzansiGopro.ViewModels"
              xmlns:community="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:animate="clr-namespace:Xamanimation;assembly=Xamanimation"
              xmlns:micro="clr-namespace:MzansiGopro.Models.microModel"
              xmlns:punny="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              Shell.NavBarIsVisible="False" Shell.FlyoutItemIsVisible="False" BackgroundColor="#fff"
              xmlns:map="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps" xmlns:viewmodels="clr-namespace:MzansiGopro.ViewModels"
              x:Class="MzansiGopro.Views.MainPage">
+    <ContentPage.Resources>
+
+        <animate:RotateToAnimation x:Key="rotate" Duration="2000" Easing="Linear" RepeatForever="True" Rotation="360" Target="{x:Reference showStoresBTN}"  />
+        <animate:HeartAnimation x:Key="heart" Duration="2000" Easing="Linear" RepeatForever="True"  Delay="1000" Target="{x:Reference showStoresBTN}"  />
+    </ContentPage.Resources>
     <ContentPage.BindingContext>
         <viewmodels:ShopViewModel />
     </ContentPage.BindingContext>
@@ -117,7 +123,8 @@
                             <BoxView BackgroundColor="#fff" Grid.ColumnSpan="2" Grid.Column="1"  />
 
 
-                            <CollectionView ItemsSource="{Binding Filter}" SelectionMode="Single" HeightRequest="30" >
+                            <CollectionView ItemsSource="{Binding Filter}" SelectionMode="None" HeightRequest="30" >
+                                
                                 <CollectionView.ItemsLayout>
                                     <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
                                 </CollectionView.ItemsLayout>
@@ -134,7 +141,7 @@
                                                 </punny:GradientStopCollection>
                                             </punny:PancakeView.BackgroundGradientStops>
                                             <punny:PancakeView.Shadow>
-                                                <punny:DropShadow BlurRadius="3" Color="#fff" Offset="1,1" />
+                                                <punny:DropShadow BlurRadius="3" Color="#000" Offset="1,1" />
                                             </punny:PancakeView.Shadow>
                                             
                                             <Label Text="{Binding Name}" BackgroundColor="Transparent" TextColor="#fff" VerticalTextAlignment="Center"  />
@@ -148,7 +155,13 @@
 
 
                             <ImageButton BackgroundColor="Transparent" Grid.Column="1" Margin="2" Source="zoompagein.png" x:Name="growBTN" Clicked="growBTN_Clicked"  />
-                            <ImageButton BackgroundColor="Transparent" Grid.Column="2" Margin="2" Source="zoompageout.png" Clicked="hideStores_Clicked" />
+                            <ImageButton BackgroundColor="Transparent" Grid.Column="2" Margin="2" Source="zoompageout.png" Clicked="hideStores_Clicked" >
+                                <ImageButton.Triggers>
+                                    <EventTrigger Event="Clicked" >
+                                        <animate:BeginAnimation Animation="{StaticResource rotate}" />
+                                    </EventTrigger>
+                                </ImageButton.Triggers>
+                            </ImageButton>
 
                            
 
@@ -291,7 +304,7 @@
                         <ColumnDefinition Width="120" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50" />
+                        <RowDefinition Height="60" />
                     </Grid.RowDefinitions>
 
 
@@ -300,7 +313,7 @@
                             <TapGestureRecognizer x:Name="showStores" Tapped="showStores_Tapped" />
                         </Frame.GestureRecognizers>
 
-                        <Image Source="planet.png" Rotation="90" Aspect="AspectFit" />
+                        <Image Source="planet.png" Rotation="90" Aspect="AspectFit" x:Name="showStoresBTN" />
                         <!---
                         <Label Text="Show Stores" HorizontalTextAlignment="Center" FontSize="18" VerticalTextAlignment="Center" TextColor="{StaticResource background}" />
                         -->
