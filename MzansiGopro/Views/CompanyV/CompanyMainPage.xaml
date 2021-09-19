@@ -177,7 +177,11 @@
                                                 
                                             <Label Text="{Binding ListName}" TextColor="{StaticResource text}" FontSize="18" VerticalOptions="Center" />
 
-                                                <Label TextColor="#000080"  Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="Edit" />
+                                                    <Label TextColor="#000080"  Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="Edit" >
+                                                        <Label.GestureRecognizers>
+                                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type businessvm:AdminBusinessViewModel}}, Path=EditProductList}" CommandParameter="{Binding .}" />
+                                                        </Label.GestureRecognizers>
+                                                    </Label>
 
                                             </Grid>
 
@@ -280,12 +284,7 @@
 
 
             
-            <BoxView BackgroundColor="#fff" />
-            <Frame Padding="0" BackgroundColor="Transparent">
-                
-                
-                
-            </Frame>
+     
             
 
 

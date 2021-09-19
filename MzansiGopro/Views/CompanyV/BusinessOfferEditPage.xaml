@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:model="clr-namespace:MzansiGopro.Models" Shell.NavBarIsVisible="False"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:businessvm="clr-namespace:MzansiGopro.ViewModels.BusinessVM"
+             x:Class="MzansiGopro.Views.CompanyV.BusinessOfferEditPage">
+    <ContentPage.BindingContext>
+        <businessvm:BusinessOfferEditViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+            
+        <StackLayout>
+
+                <Frame BackgroundColor="Transparent" Padding="0">
+                    <Grid RowSpacing="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+
+                        <Frame Padding="0" BackgroundColor="Transparent" >
+                            
+                        <Label Text="{Binding OfferName}" TextColor="{StaticResource text}" HorizontalOptions="Center" />
+                        </Frame>
+
+
+
+                    </Grid>
+                    
+                </Frame>
+
+
+
+                <ScrollView>
+
+                    <StackLayout Orientation="Horizontal" Padding="10"  >
+
+                        <CollectionView ItemsSource="{Binding Products}" >
+
+                            <CollectionView.EmptyViewTemplate>
+                                <DataTemplate>
+                                    <Frame >
+                                        <StackLayout>
+                                            <Image Source="imageFolder.png" Aspect="AspectFit" />
+                                            <Label Text="No Items Yet" TextColor="#191919" />
+                                        </StackLayout>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.EmptyViewTemplate>
+
+
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Span="2" Orientation="Vertical" VerticalItemSpacing="10" HorizontalItemSpacing="10" />
+                            </CollectionView.ItemsLayout>
+
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame BackgroundColor="Transparent" Margin="0,10" Padding="10" BorderColor="#000" x:DataType="model:Products"   CornerRadius="15">
+                                        <Grid  >
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="90" />
+                                                <RowDefinition Height="30" />
+                                                <RowDefinition Height="30" />
+                                            </Grid.RowDefinitions>
+
+                                            <Frame Padding="0" BackgroundColor="Transparent" CornerRadius="15">
+                                                
+                                            <Image Source="{Binding Image}"  Aspect="AspectFill"  />
+                                            </Frame>
+
+                                            <Label  Margin="10,0" TextColor="{StaticResource text}"  Grid.Row="1">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="R " TextColor="{StaticResource text}" />
+                                                        <Span Text="{Binding Price}" TextColor="{StaticResource text}"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+
+
+                                            <Button Text="Edit" BackgroundColor="{StaticResource Primary}" CornerRadius="10" Padding="0" TextColor="{StaticResource background}" Grid.Row="2" />
+
+
+
+                                        </Grid>
+
+
+
+                                    </Frame>
+
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+
+
+                        </CollectionView>
+
+
+
+
+
+
+                    </StackLayout>
+                </ScrollView>
+
+
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

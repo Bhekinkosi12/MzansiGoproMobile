@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using MzansiGopro.Models.CollectiveModel;
 using System.Collections.ObjectModel;
+using Xamarin.Forms;
 
 
 namespace MzansiGopro.ViewModels.BusinessVM
@@ -10,22 +11,25 @@ namespace MzansiGopro.ViewModels.BusinessVM
    public class AdminBusinessViewModel : BaseViewModel
     {
 
-
+        public static ProductListModel OfferSelected { get; set; }
         public AdminBusinessViewModel()
         {
             //NewbusinessStart();
             tempData();
+            EditProductList = new Command<ProductListModel>(OnEditOffer);
         }
 
         string name;
         string coverImage;
         string location;
         string email; 
-        
         string number;
-        BusinessOffers businessOffer;
+        
        ObservableCollection<ProductListModel> productModel;
         ObservableCollection<ProductListModel> productModelList;
+
+        public Command<ProductListModel> EditProductList { get; set; }
+
 
 
         public ObservableCollection<ProductListModel> ProductModelList
@@ -128,6 +132,20 @@ namespace MzansiGopro.ViewModels.BusinessVM
 
 
 
+      async void OnEditOffer(ProductListModel _productList)
+        {
+            if(_productList != null)
+            {
+                OfferSelected = _productList;
+                await Shell.Current.GoToAsync("BusinessOfferEditPage");
+            }
+        }
+
+
+        public ProductListModel GetSelectedModel()
+        {
+            return OfferSelected;
+        }
 
         void tempData()
         {
