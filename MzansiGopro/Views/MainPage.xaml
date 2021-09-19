@@ -101,7 +101,7 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30" />
-                        <RowDefinition Height="200" x:Name="RowStoreFrameSecond"/>
+                        <RowDefinition Height="220" x:Name="RowStoreFrameSecond"/>
                     </Grid.RowDefinitions>
 
 
@@ -126,13 +126,16 @@
 
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
-                                        <punny:PancakeView Padding="5,1" x:DataType="micro:offer" HeightRequest="17"  >
+                                        <punny:PancakeView Padding="5,1" x:DataType="micro:offer" HeightRequest="17" CornerRadius="10" >
                                             <punny:PancakeView.BackgroundGradientStops>
                                                 <punny:GradientStopCollection>
                                                     <punny:GradientStop Color="#591da9" Offset="0"/>
-                                                    <punny:GradientStop Color="#051960" Offset="1"/>
+                                                    <punny:GradientStop Color="#787ff6" Offset="1"/>
                                                 </punny:GradientStopCollection>
                                             </punny:PancakeView.BackgroundGradientStops>
+                                            <punny:PancakeView.Shadow>
+                                                <punny:DropShadow BlurRadius="3" Color="#fff" Offset="1,1" />
+                                            </punny:PancakeView.Shadow>
                                             
                                             <Label Text="{Binding Name}" BackgroundColor="Transparent" TextColor="#fff" VerticalTextAlignment="Center"  />
                                         </punny:PancakeView>
@@ -161,7 +164,7 @@
                         <ScrollView>
                             <StackLayout Orientation="Horizontal">
                                 
-                    <CollectionView VerticalOptions="End" x:Name="storeCollective" HeightRequest="190"  ItemsSource="{Binding ShopList}" Grid.Row="1">
+                    <CollectionView VerticalOptions="End" x:Name="storeCollective" HeightRequest="210"  ItemsSource="{Binding ShopList}" Grid.Row="1">
                         <CollectionView.ItemsLayout >
                             <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"  />
                         </CollectionView.ItemsLayout>
@@ -172,7 +175,7 @@
 
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <punny:PancakeView Padding="0" BackgroundColor="Transparent" x:DataType="local:Shop" CornerRadius="10" WidthRequest="160" >
+                                <punny:PancakeView Padding="8" BackgroundColor="{StaticResource background}" x:DataType="local:Shop"  CornerRadius="10" WidthRequest="160" >
                                     <punny:PancakeView.GestureRecognizers>
                                         <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
@@ -191,12 +194,12 @@
                                             <RowDefinition Height="auto" />
                                         </Grid.RowDefinitions>
 
-                                        <Frame  Padding="0" BackgroundColor="Transparent">
+                                        <Frame  Padding="0" BackgroundColor="Transparent" CornerRadius="10">
                                             <Image Source="{Binding Cover_Img}" HeightRequest="80"  Aspect="AspectFill" />
                                         </Frame>
                                       
 
-                                        <Frame Padding="0" BackgroundColor="{StaticResource background}" Grid.Row="1">
+                                        <Frame Padding="0" BackgroundColor="Transparent" Grid.Row="1">
                                             <StackLayout Orientation="Vertical">
 
 
@@ -212,7 +215,7 @@
 
                                                             <CollectionView.ItemTemplate>
                                                                 <DataTemplate>
-                                                                    <Frame Padding="5,1"  HeightRequest="17" x:DataType="micro:offer"   HasShadow="True" BorderColor="#303030" >
+                                                                                <Frame Padding="5,1"  HeightRequest="17" x:DataType="micro:offer" CornerRadius="10"   HasShadow="True" BorderColor="#787ff6" >
                                                                         <Label Text="{Binding Name}" TextColor="#191919" />
                                                                     </Frame>
                                                                 </DataTemplate>
@@ -228,7 +231,7 @@
 
                                                             <CollectionView.ItemTemplate>
                                                                 <DataTemplate>
-                                                                    <Frame Padding="5,1" BackgroundColor="#000080" x:DataType="micro:offer"  HasShadow="True" BorderColor="#303030" >
+                                                                    <Frame Padding="5,1" BackgroundColor="#787ff6" x:DataType="micro:offer"  HasShadow="True" BorderColor="#303030" >
                                                                         <Label Text="{Binding Name}" TextColor="#fff" />
                                                                     </Frame>
                                                                 </DataTemplate>
@@ -246,7 +249,7 @@
 
 
 
-                                                <Button Text="Visit" HeightRequest="39"  x:Name="visit" Clicked="visit_Clicked" />
+                                                            <Button Text="Visit" BackgroundColor="#591da9" HeightRequest="28" CornerRadius="10" Padding="0"   x:Name="visit" Clicked="visit_Clicked" />
 
 
                                             </StackLayout>
