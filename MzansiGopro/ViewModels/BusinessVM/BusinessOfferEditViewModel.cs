@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using MzansiGopro.Models;
+using MzansiGopro.Models.microModel;
 using Xamarin.Forms;
+using System.Collections.ObjectModel;
 
 namespace MzansiGopro.ViewModels.BusinessVM
 {
@@ -21,18 +23,46 @@ namespace MzansiGopro.ViewModels.BusinessVM
         string selectedPrice;
         bool isSelected = false;
 
+        string offerInput;
 
+
+
+        ObservableCollection<offer> offer;
 
 
 
         public Command<Products> SelectItem { get; set; }
-
+        public Command AddItem { get; }
         public BusinessOfferEditViewModel()
         {
+            defaultItem();
             GetData();
             SelectItem = new Command<Products>(OnSelectItem);
+            AddItem = new Command(onAddItem);
+          
             
         }
+
+        public string OfferInput
+        {
+            get => offerInput;
+            set
+            {
+                SetProperty(ref offerInput, value);
+                OnPropertyChanged(nameof(OfferInput));
+            }
+        }
+
+        public ObservableCollection<offer> Offer
+        {
+            get => offer;
+            set
+            {
+                SetProperty(ref offer, value);
+                OnPropertyChanged(nameof(Offer));
+            }
+        }
+
 
         public bool IsSelected
         {
@@ -142,6 +172,78 @@ namespace MzansiGopro.ViewModels.BusinessVM
             SelectedPrice = product.Price.ToString();
 
         }
+
+
+
+        void defaultItem()
+        {
+            if (Offer == null)
+            {
+                Offer = new ObservableCollection<offer>()
+                {
+                    new offer
+                    {
+                        Name = "Add"
+                    }
+                };
+            }
+
+          
+
+        }
+
+
+
+
+        void onAddItem()
+        {
+
+            var item = new offer()
+            {
+                Name = "Add"
+            };
+
+            ObservableCollection<offer> _offer = new ObservableCollection<offer>();
+
+
+            if (OfferInput != null || OfferInput.Length > 0)
+            {
+                var Currentitem = new offer()
+                {
+                    Name = OfferInput
+                };
+
+                var firstItem = Offer[0];
+
+                if (firstItem.Name == "Add")
+                {
+                    Offer.Clear();
+                    Offer = _offer;
+                    Offer.Add(Currentitem);
+
+
+
+                }
+                else
+                {
+                    Offer.Add(Currentitem);
+
+
+                }
+
+
+
+                OfferInput = "";
+
+
+            }
+            else
+            {
+
+            }
+
+        }
+
 
     }
 }

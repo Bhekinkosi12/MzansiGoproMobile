@@ -143,7 +143,7 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
             set
             {
                 SetProperty(ref offerInput, value);
-                OnPropertyChanged(nameof(OfferInput));
+                OnPropertyChanged(nameof(ExtraOfferInput));
             }
         }
 
