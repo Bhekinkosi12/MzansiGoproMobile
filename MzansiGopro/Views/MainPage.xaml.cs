@@ -69,7 +69,7 @@ namespace MzansiGopro.Views
             var vm = BindingContext as ShopViewModel;
             var location = vm.CurrentLocation.Split(';');
             
-            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(double.Parse(location[0]), double.Parse(location[1])), Distance.FromMeters(3)));
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(double.Parse(location[0]), double.Parse(location[1])), Distance.FromMeters(300)));
 
 
         }

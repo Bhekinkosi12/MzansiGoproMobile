@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MzansiGopro.Models.microModel;
 
 namespace MzansiGopro.Models
 {
@@ -14,8 +15,8 @@ namespace MzansiGopro.Models
         public string Name { get; set; }
         public string Image { get; set; }
         public double Price { get; set; }
-        public List<string> Ingredient { get; set; }
-        public List<string> OptionalExtra { get; set; }
+        public List<offer> Ingredient { get; set; }
+        public List<offer> OptionalExtra { get; set; }
 
     }
 }
