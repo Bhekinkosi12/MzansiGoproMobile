@@ -23,7 +23,7 @@ namespace MzansiGopro.ViewModels.BusinessVM
         string selectedName;
         string selectedPrice;
         bool isSelected = false;
-
+        bool isDelete = false;
         string offerInput;
 
 
@@ -36,8 +36,16 @@ namespace MzansiGopro.ViewModels.BusinessVM
         public Command<Products> SelectItem { get; set; }
         public Command<Products> DeleteRequest { get; set; }
 
+        public Command DeleteConfirm { get; }
+        public Command DeleteDenied { get; }
+
         public Command AddItem { get; }
         public Command SaveEditedProduct { get; }
+
+
+
+
+
         public BusinessOfferEditViewModel()
         {
             defaultItem();
@@ -46,9 +54,14 @@ namespace MzansiGopro.ViewModels.BusinessVM
             AddItem = new Command(onAddItem);
 
             SaveEditedProduct = new Command(OnSaveEditedProduct);
+
+            DeleteRequest = new Command<Products>(OnDeleteRequest);
+            DeleteConfirm = new Command(OnDeleteItem);
+            DeleteDenied = new Command(OnCancelDelete);
+
             
         }
-
+       static Products DeleteItem { get; set; }
         public ObservableCollection<Products> ProductList
         {
             get => productList;
@@ -56,6 +69,16 @@ namespace MzansiGopro.ViewModels.BusinessVM
             {
                 SetProperty(ref productList, value);
                 OnPropertyChanged(nameof(ProductList));
+            }
+        }
+
+        public bool IsDelete
+        {
+            get => isDelete;
+            set
+            {
+                SetProperty(ref isDelete, value);
+                OnPropertyChanged(nameof(IsDelete));
             }
         }
 
@@ -307,11 +330,24 @@ namespace MzansiGopro.ViewModels.BusinessVM
 
 
 
-        public void OnDeleteRequest()
+        public void OnDeleteRequest(Products _product)
         {
+            IsDelete = true;
+            if(_product != null)
+            DeleteItem = _product;
 
 
 
+        }
+
+      public void OnDeleteItem()
+        {
+            ProductList.Remove(DeleteItem);
+            IsDelete = false;
+        }
+        void OnCancelDelete()
+        {
+            IsDelete = false;
         }
 
     }

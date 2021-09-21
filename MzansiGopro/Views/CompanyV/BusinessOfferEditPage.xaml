@@ -187,7 +187,11 @@
 
 
                                                     <Button Text="Edit"  Command="{Binding Source={RelativeSource AncestorType={x:Type businessvm:BusinessOfferEditViewModel}}, Path=SelectItem}"		
-                                CommandParameter="{Binding .}" BackgroundColor="#787ff6" HeightRequest="28" HorizontalOptions="CenterAndExpand" WidthRequest="100" VerticalOptions="EndAndExpand"  CornerRadius="10" Padding="0" TextColor="{StaticResource background}" Grid.Row="2" />
+                                CommandParameter="{Binding .}" BackgroundColor="#787ff6" HeightRequest="28" HorizontalOptions="EndAndExpand" WidthRequest="100" VerticalOptions="EndAndExpand"  CornerRadius="10" Padding="0" TextColor="{StaticResource background}" Grid.Row="2" />
+
+
+                                                    <Button Text="Delete"  Command="{Binding Source={RelativeSource AncestorType={x:Type businessvm:BusinessOfferEditViewModel}}, Path=DeleteRequest}"		
+                                CommandParameter="{Binding .}" BackgroundColor="#fff" HeightRequest="28" HorizontalOptions="StartAndExpand" WidthRequest="100" VerticalOptions="EndAndExpand" BorderColor="Red" BorderWidth="1"  CornerRadius="10" Padding="0" TextColor="Red" Grid.Row="2" />
 
 
 
@@ -389,7 +393,46 @@
                 
                 
             </Frame>
-            
+
+
+
+
+
+            <Frame IsVisible="{Binding IsDelete}" BackgroundColor="Transparent" Padding="10"  Grid.RowSpan="2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <BoxView BackgroundColor="#fff"  />
+                    <Frame Padding="0" BackgroundColor="Transparent">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                
+                            </Grid.RowDefinitions>
+
+
+
+                            <Frame BackgroundColor="#fff" Padding="0" >
+
+                                <Label Text="Are you sure you want to delete" TextColor="{StaticResource text}" FontSize="23" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                            </Frame>
+
+                            <Button Text="No" Command="{Binding DeleteDenied}" Grid.Row="1" HeightRequest="40" VerticalOptions="Start" HorizontalOptions="StartAndExpand" TextColor="Green" BackgroundColor="#fff" BorderWidth="1" BorderColor="Green" />
+                            <Button Text="Yes" Command="{Binding DeleteConfirm}"  Grid.Row="1" HeightRequest="40" VerticalOptions="Start" HorizontalOptions="EndAndExpand" TextColor="Red" BackgroundColor="#fff" BorderWidth="1" BorderColor="Red" />
+
+
+
+                        </Grid>
+                    </Frame>
+
+
+                </Grid>
+                
+            </Frame>
             
             
             
