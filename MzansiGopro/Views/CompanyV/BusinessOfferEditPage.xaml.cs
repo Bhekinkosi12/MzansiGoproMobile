@@ -33,11 +33,34 @@ namespace MzansiGopro.Views.CompanyV
             }
         }
 
-        private void productsave_Clicked(object sender, EventArgs e)
+        private async void productsave_Clicked(object sender, EventArgs e)
         {
             var model = BindingContext as BusinessOfferEditViewModel;
 
-            model.IsSelected = false;
+
+            try
+            {
+
+                if (!string.IsNullOrEmpty(model.SelectedName) && !string.IsNullOrEmpty(model.SelectedImage) )
+                {
+                    model.OnSaveEditedProduct();
+                model.IsSelected = false;
+                }
+                else
+                {
+
+                }
+            }
+            catch(Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
+
+
+
+
+
+
         }
 
         private void productCancel_Clicked(object sender, EventArgs e)

@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:model="clr-namespace:MzansiGopro.Models" Shell.NavBarIsVisible="False"
+             xmlns:micromodel="clr-namespace:MzansiGopro.Models.microModel"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:businessvm="clr-namespace:MzansiGopro.ViewModels.BusinessVM" xmlns:punny="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="MzansiGopro.Views.CompanyV.BusinessOfferEditPage">
     <ContentPage.BindingContext>
@@ -34,9 +35,11 @@
                             
                         <Label Text="{Binding OfferName}" FontSize="23" TextColor="{StaticResource text}" HorizontalOptions="CenterAndExpand" WidthRequest="200" Margin="15,0" />
                         </Frame>
-                        <Frame Padding="0" BackgroundColor="Transparent"  IsVisible="False" x:Name="editNameFrame">
-                            <Entry Text="{Binding OfferName}" TextColor="{StaticResource Primary}" />
-                        </Frame>
+                        <Frame Padding="0" BorderColor="{StaticResource Primary}"  BackgroundColor="Transparent"  IsVisible="False" x:Name="editNameFrame">
+                         
+                                        <Entry Text="{Binding OfferName}" TextColor="{StaticResource Primary}" />
+                                    
+                                </Frame>
                         <Label Text="Edit" TextColor="{StaticResource Primary}" x:Name="labelEdit"  FontSize="17" FontFamily="cursive" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="10,0" >
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer x:Name="editName" Tapped="editName_Tapped" />
@@ -71,7 +74,7 @@
 
                     <StackLayout Orientation="Horizontal" Padding="10"  >
 
-                        <CollectionView ItemsSource="{Binding Products}" >
+                        <CollectionView ItemsSource="{Binding ProductList}" >
 
                             <CollectionView.EmptyViewTemplate>
                                 <DataTemplate>
@@ -86,17 +89,17 @@
 
 
                             <CollectionView.ItemsLayout>
-                                <GridItemsLayout Span="2" Orientation="Vertical" VerticalItemSpacing="10" HorizontalItemSpacing="10" />
+                                <GridItemsLayout Span="1" Orientation="Vertical" VerticalItemSpacing="10" HorizontalItemSpacing="10" />
                             </CollectionView.ItemsLayout>
 
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <Frame BackgroundColor="Transparent" Margin="0,10" Padding="10" BorderColor="#000" x:DataType="model:Products"   CornerRadius="15">
-                                        <Grid  >
+                                    <Frame BackgroundColor="Transparent" Margin="0,10,0,0" Padding="10,10,10,0" WidthRequest="190" BorderColor="#000" x:DataType="model:Products"   CornerRadius="15">
+                                        <Grid RowSpacing="10" >
 
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="90" />
-                                                <RowDefinition Height="30" />
+                                                <RowDefinition Height="60" />
                                                 <RowDefinition Height="30" />
                                             </Grid.RowDefinitions>
 
@@ -105,7 +108,21 @@
                                             <Image Source="{Binding Image}" BackgroundColor="Transparent"  Aspect="AspectFill"  />
                                             </Frame>
 
-                                            <Label  Margin="10,0" TextColor="{StaticResource text}"  Grid.Row="1">
+
+                                                    <Grid Grid.Row="1">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="30" />
+                                                            <RowDefinition Height="30" />
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="90" />
+                                                        </Grid.ColumnDefinitions>
+
+
+                                                        <Label Text="{Binding Name}" FontSize="18" TextColor="{StaticResource text}" Grid.ColumnSpan="2" HorizontalOptions="Center" />
+
+                                                        <Label  Margin="10,0" TextColor="{StaticResource text}" VerticalOptions="Center" Grid.Column="1" Grid.Row="1" HorizontalOptions="End">
                                                 <Label.FormattedText>
                                                     <FormattedString>
                                                         <Span Text="R " TextColor="{StaticResource text}" />
@@ -115,8 +132,62 @@
                                             </Label>
 
 
+
+
+
+
+                                                        <CollectionView ItemsSource="{Binding Ingredient}" Grid.Row="1"  HeightRequest="37" Margin="10,0" ItemSizingStrategy="MeasureAllItems" >
+                                                            <CollectionView.ItemsLayout>
+                                                                <LinearItemsLayout Orientation="Horizontal"  ItemSpacing="10"/>
+                                                            </CollectionView.ItemsLayout>
+                                                            <CollectionView.EmptyViewTemplate>
+                                                                <DataTemplate>
+                                                                    <Frame >
+                                                                        <Label Text="Add item Ingrient" TextColor="#191919" />
+                                                                    </Frame>
+                                                                </DataTemplate>
+
+                                                            </CollectionView.EmptyViewTemplate>
+
+                                                            <CollectionView.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <Frame BackgroundColor="Transparent" Padding="7,3" x:DataType="micromodel:offer"  CornerRadius="10" BorderColor="#000080"  >
+                                                                        <Grid>
+                                                                            <Grid.ColumnDefinitions>
+                                                                                <ColumnDefinition Width="*" />
+                                                                                
+                                                                            </Grid.ColumnDefinitions>
+
+                                                                            <Label Text="{Binding Name}" TextColor="#191919" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+
+                                                                       
+
+                                                                        </Grid>
+                                                                    </Frame>
+                                                                </DataTemplate>
+                                                            </CollectionView.ItemTemplate>
+
+
+                                                        </CollectionView>
+
+
+
+
+
+
+
+
+
+                                                    </Grid>
+                                            
+                                            
+                                            
+                                            
+                                            
+
+
                                                     <Button Text="Edit"  Command="{Binding Source={RelativeSource AncestorType={x:Type businessvm:BusinessOfferEditViewModel}}, Path=SelectItem}"		
-                                CommandParameter="{Binding .}" BackgroundColor="#787ff6" HeightRequest="28"  CornerRadius="10" Padding="0" TextColor="{StaticResource background}" Grid.Row="2" />
+                                CommandParameter="{Binding .}" BackgroundColor="#787ff6" HeightRequest="28" HorizontalOptions="CenterAndExpand" WidthRequest="100" VerticalOptions="EndAndExpand"  CornerRadius="10" Padding="0" TextColor="{StaticResource background}" Grid.Row="2" />
 
 
 
@@ -251,7 +322,7 @@
                                                         </CollectionView.ItemsLayout>
                                                         <CollectionView.EmptyViewTemplate>
                                                             <DataTemplate>
-                                                                <Frame >
+                                                                <Frame BackgroundColor="Transparent" Padding="7"  CornerRadius="10" BorderColor="#000080" >
                                                                     <Label Text="Add item" TextColor="#191919" />
                                                                 </Frame>
                                                             </DataTemplate>
@@ -311,7 +382,7 @@
                     
 
 
-                    <Button Text="Save" x:Name="productsave" Clicked="productsave_Clicked" Grid.Row="1" HorizontalOptions="EndAndExpand" BackgroundColor="#787ff6" TextColor="#fff"  />
+                    <Button Text="Save" x:Name="productsave"  Clicked="productsave_Clicked" Grid.Row="1" HorizontalOptions="EndAndExpand" BackgroundColor="#787ff6" TextColor="#fff"  />
                     <Button Text="Cancel" x:Name="productCancel" Clicked="productCancel_Clicked" Grid.Row="1"  HorizontalOptions="StartAndExpand" BackgroundColor="#fff" BorderColor="Red" BorderWidth="1" TextColor="Red"  />
 
                 </Grid>

@@ -124,7 +124,7 @@
 
                     <ScrollView Grid.Row="1" Orientation="Horizontal">
                         <StackLayout Orientation="Horizontal">
-                            <Image HeightRequest="140" WidthRequest="130" Source="shisa2.jpg" Aspect="AspectFill" />
+                            <Image HeightRequest="140" WidthRequest="130" Source="shisa2.jpg" Aspect="AspectFill"  />
                             <Image HeightRequest="140" WidthRequest="130" Source="shisa3.jpg" Aspect="AspectFill" />
                             <Image HeightRequest="140" WidthRequest="130" Source="shisa4.jpg" Aspect="AspectFill" />
                             <Image HeightRequest="140" WidthRequest="130" Source="shisa2.jpg" Aspect="AspectFill" />
@@ -168,7 +168,7 @@
                             <DataTemplate>
                                 <community:Expander x:DataType="compound:ProductListModel"  Margin="0,15">
                                     <community:Expander.Header>
-                                        <Frame Padding="15,0" Margin="10,0"  BackgroundColor="#eee" HeightRequest="60"  >
+                                        <Frame Padding="15,0" Margin="10,0" CornerRadius="15"  BackgroundColor="#eee" HeightRequest="60"  >
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*" />
@@ -193,7 +193,7 @@
 
                                         <StackLayout Orientation="Horizontal" Padding="10"  >
 
-                                            <CollectionView ItemsSource="{Binding Products}" HeightRequest="170" >
+                                            <CollectionView ItemsSource="{Binding Products}" HeightRequest="200" >
 
                                                 <CollectionView.EmptyViewTemplate>
                                                     <DataTemplate>
@@ -213,17 +213,23 @@
 
                                                 <CollectionView.ItemTemplate>
                                                     <DataTemplate>
-                                                        <Frame BackgroundColor="Transparent" Margin="0,10" Padding="0" BorderColor="#000" x:DataType="model:Products" WidthRequest="190"  CornerRadius="15">
+                                                        <Frame BackgroundColor="Transparent" Margin="0,10" Padding="10" BorderColor="#000" x:DataType="model:Products" WidthRequest="190"  CornerRadius="15">
                                                             <Grid  >
 
                                                                 <Grid.RowDefinitions>
                                                                     <RowDefinition Height="90" />
+                                                                    <RowDefinition Height="50" />
                                                                     <RowDefinition Height="30" />
-                                                                    <RowDefinition Height="40" />
                                                                 </Grid.RowDefinitions>
 
+                                                                    <Frame Padding="0" BackgroundColor="Transparent" CornerRadius="15">
+                                                                        
                                                                 <Image Source="{Binding Image}" Aspect="AspectFill"  />
+                                                                    </Frame>
 
+                                                                
+                                                                
+                                                                
                                                                 <Label  Margin="10,0" TextColor="{StaticResource text}"  Grid.Row="1">
                                                                     <Label.FormattedText>
                                                                         <FormattedString>
@@ -233,8 +239,8 @@
                                                                     </Label.FormattedText>
                                                                 </Label>
 
-                                                                
-                                                                <Button Text="View" BackgroundColor="{StaticResource Primary}" TextColor="{StaticResource background}" Grid.Row="2" />
+
+                                                                    <Button Text="View" BackgroundColor="#591da9" Padding="0"  CornerRadius="15" TextColor="{StaticResource background}" Grid.Row="2" />
 
 
 

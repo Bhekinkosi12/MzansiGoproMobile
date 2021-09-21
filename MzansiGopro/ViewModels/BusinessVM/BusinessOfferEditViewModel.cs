@@ -5,6 +5,7 @@ using MzansiGopro.Models;
 using MzansiGopro.Models.microModel;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace MzansiGopro.ViewModels.BusinessVM
 {
@@ -28,19 +29,34 @@ namespace MzansiGopro.ViewModels.BusinessVM
 
 
         ObservableCollection<offer> offer;
+        ObservableCollection<Products> productList;
 
 
 
         public Command<Products> SelectItem { get; set; }
+        public Command<Products> DeleteRequest { get; set; }
+
         public Command AddItem { get; }
+        public Command SaveEditedProduct { get; }
         public BusinessOfferEditViewModel()
         {
             defaultItem();
             GetData();
             SelectItem = new Command<Products>(OnSelectItem);
             AddItem = new Command(onAddItem);
-          
+
+            SaveEditedProduct = new Command(OnSaveEditedProduct);
             
+        }
+
+        public ObservableCollection<Products> ProductList
+        {
+            get => productList;
+            set
+            {
+                SetProperty(ref productList, value);
+                OnPropertyChanged(nameof(ProductList));
+            }
         }
 
         public string OfferInput
@@ -157,6 +173,13 @@ namespace MzansiGopro.ViewModels.BusinessVM
             Products = main.Products;
             Layout = main.Layout;
 
+
+            foreach(var _product in main.Products)
+            {
+                ProductList.Add(_product);
+            }
+            
+
                 
         }
         
@@ -170,25 +193,21 @@ namespace MzansiGopro.ViewModels.BusinessVM
             SelectedImage = product.Image;
             SelectedName = product.Name;
             SelectedPrice = product.Price.ToString();
+            SelectedProduct = product;
 
+            foreach(var item in product.Ingredient)
+            {
+                Offer.Add(item);
+            }
         }
 
 
 
         void defaultItem()
         {
-            if (Offer == null)
-            {
-                Offer = new ObservableCollection<offer>()
-                {
-                    new offer
-                    {
-                        Name = "Add"
-                    }
-                };
-            }
 
-          
+            Offer = new ObservableCollection<offer>();
+            ProductList = new ObservableCollection<Products>();
 
         }
 
@@ -198,38 +217,23 @@ namespace MzansiGopro.ViewModels.BusinessVM
         void onAddItem()
         {
 
-            var item = new offer()
-            {
-                Name = "Add"
-            };
+           
 
             ObservableCollection<offer> _offer = new ObservableCollection<offer>();
 
 
-            if (OfferInput != null || OfferInput.Length > 0)
+            if (!string.IsNullOrEmpty(OfferInput)  && OfferInput.Length > 0)
             {
                 var Currentitem = new offer()
                 {
                     Name = OfferInput
                 };
 
-                var firstItem = Offer[0];
-
-                if (firstItem.Name == "Add")
-                {
-                    Offer.Clear();
-                    Offer = _offer;
+              
                     Offer.Add(Currentitem);
 
 
-
-                }
-                else
-                {
-                    Offer.Add(Currentitem);
-
-
-                }
+                
 
 
 
@@ -239,11 +243,76 @@ namespace MzansiGopro.ViewModels.BusinessVM
             }
             else
             {
-
+                
             }
 
         }
 
+
+
+
+
+       public void OnSaveEditedProduct()
+        {
+            List<offer> offers = new List<offer>();
+            List<Products> _products = new List<Products>();
+            ObservableCollection<Products> newProduct = new ObservableCollection<Products>();
+
+            foreach(var _offer in Offer)
+            {
+                offers.Add(_offer);
+            }
+
+
+            var _product = new Products()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Image = SelectedImage,
+                 Name = SelectedName,
+                 Price = double.Parse(SelectedPrice),
+                 Ingredient = offers
+
+            };
+
+            _products = Products;
+            _products.Add(_product);
+
+
+            newProduct.Add(_product);
+            foreach(var item in ProductList)
+            {
+                newProduct.Add(item);
+            
+            }
+
+            newProduct.Remove(SelectedProduct);
+            ProductList.Clear();
+            ProductList = newProduct;
+           
+
+
+             _products.Remove(SelectedProduct);
+            
+
+
+      
+
+            Products = _products;
+
+           
+        }
+
+
+
+
+
+
+        public void OnDeleteRequest()
+        {
+
+
+
+        }
 
     }
 }

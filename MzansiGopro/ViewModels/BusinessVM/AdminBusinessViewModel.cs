@@ -159,17 +159,41 @@ namespace MzansiGopro.ViewModels.BusinessVM
                      {
                          new Models.Products
                          {
+                              Id = Guid.NewGuid().ToString(),
                               Image = "shisa1.jpg",
                                Name="Mandi",
                                 Price = 30.5,
+                                 Ingredient = new List<Models.microModel.offer>()
+                                 {
+                                     new Models.microModel.offer
+                                     {
+                                          Name = "achaar"
+                                     },new Models.microModel.offer
+                                     {
+                                          Name = "achaar"
+                                     },
+                                     
+                                 }
                                 
                          },
                          new Models.Products
                          {
+                              Id = Guid.NewGuid().ToString(),
                               Image = "shisa3.jpg",
                                Name="Mandi",
                                 Price = 20.5,
-                                
+                                  Ingredient = new List<Models.microModel.offer>()
+                                 {
+                                     new Models.microModel.offer
+                                     {
+                                          Name = "achaar"
+                                     },new Models.microModel.offer
+                                     {
+                                          Name = "achaar"
+                                     },
+
+                                 }
+
                          },
                      }
                 },
@@ -180,23 +204,53 @@ namespace MzansiGopro.ViewModels.BusinessVM
                      {
                          new Models.Products
                          {
+                              Id = Guid.NewGuid().ToString(),
                               Image = "shisa1.jpg",
                                Name="Mandi",
-                                Price = 30.5,
-                                
+                                Price = 30.5, 
+                             Ingredient = new List<Models.microModel.offer>()
+                                 {
+                                     new Models.microModel.offer
+                                     {
+                                          Name = "achaar"
+                                     },new Models.microModel.offer
+                                     {
+                                          Name = "achaar"
+                                     },
+
+                                 }
+
                          },
                          new Models.Products
                          {
+                              Id = Guid.NewGuid().ToString(),
                               Image = "shisa3.jpg",
                                Name="Beaf",
                                 Price = 20.5,
-                                
+                                  Ingredient = new List<Models.microModel.offer>()
+                                 {
+                                     new Models.microModel.offer
+                                     {
+                                          Name = "achaar"
+                                     },new Models.microModel.offer
+                                     {
+                                          Name = "achaar"
+                                     },
+
+                                 }
                          },
                      }
                 },
             };
         }
 
+
+
+
+        public void OnSaveEditedoffer()
+        {
+
+        }
 
 
 
