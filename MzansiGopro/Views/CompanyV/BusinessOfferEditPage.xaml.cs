@@ -69,5 +69,11 @@ namespace MzansiGopro.Views.CompanyV
 
             model.IsSelected = false;
         }
+
+        private void selectImageBox_Tapped(object sender, EventArgs e)
+        {
+            var model = BindingContext as BusinessOfferEditViewModel;
+            model.OnAddMedia();
+        }
     }
 }

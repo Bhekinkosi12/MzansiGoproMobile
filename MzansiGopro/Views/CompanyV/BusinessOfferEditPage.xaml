@@ -250,7 +250,11 @@
                             <Frame Padding="0" BackgroundColor="Transparent" CornerRadius="15" >
                                 <Image Source="{Binding SelectedImage}" Aspect="AspectFill" />
                             </Frame>
-                            <BoxView BackgroundColor="#000" Opacity="0.5" CornerRadius="15"/>
+                            <BoxView BackgroundColor="#000" Opacity="0.5" CornerRadius="15">
+                                <BoxView.GestureRecognizers>
+                                    <TapGestureRecognizer x:Name="selectImageBox" Tapped="selectImageBox_Tapped" />
+                                </BoxView.GestureRecognizers>
+                            </BoxView>
                             <Label Text="Tap To Select New Image" TextColor="#fff"  HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
 
 

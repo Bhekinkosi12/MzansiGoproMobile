@@ -7,6 +7,12 @@ using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using System.Linq;
 
+using MzansiGopro.Services;
+using Xamarin.Essentials;
+using System.IO;
+
+using MzansiGopro.Services.AuthSercurity;
+
 namespace MzansiGopro.ViewModels.BusinessVM
 {
    public class BusinessOfferEditViewModel : BaseViewModel
@@ -349,6 +355,56 @@ namespace MzansiGopro.ViewModels.BusinessVM
         {
             IsDelete = false;
         }
+
+
+
+
+
+
+
+
+       public async void OnAddMedia()
+        {
+
+            UserDataStorage storage = new UserDataStorage();
+
+            PickOptions pickOption = new PickOptions()
+            {
+                FileTypes = FilePickerFileType.Images,
+                PickerTitle = "Please select images or video"
+            };
+            var picked = await storage.PickMedia(pickOption, "nameAndemail");
+
+            var file = await picked.OpenReadAsync();
+
+
+
+
+
+            try
+            {
+
+                var link = storage.AddStoreStream("Covers", picked.FileName, file as FileStream);
+
+                
+
+                SelectedImage = await link;
+
+            }
+            catch (Exception)
+            {
+                await Shell.Current.DisplayAlert("Error", "Check internet connection and retry", "OK");
+            }
+
+
+
+        }
+
+
+
+
+
+
 
     }
 }
