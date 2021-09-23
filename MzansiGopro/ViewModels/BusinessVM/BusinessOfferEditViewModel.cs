@@ -429,7 +429,7 @@ namespace MzansiGopro.ViewModels.BusinessVM
                   ListName = OfferName,
                    Products = productslist
             };
-
+            RunTimeBusiness.BusinessOffers.OfferList.Add(product);
 
             try
             {

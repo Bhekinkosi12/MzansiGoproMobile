@@ -42,7 +42,7 @@
 
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <Frame Padding="0" BackgroundColor="Transparent" WidthRequest="200"  x:DataType="model:News" CornerRadius="15" >
+                                <Frame Padding="0,5" BackgroundColor="Transparent" WidthRequest="200"  x:DataType="model:News" CornerRadius="15" >
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="30" />
@@ -109,17 +109,13 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Frame Padding="0" BackgroundColor="{StaticResource background}" CornerRadius="15" HeightRequest="250" x:DataType="model:Events"  >
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="200" />
-                                    <RowDefinition Height="50" />
-                                </Grid.RowDefinitions>
-                                <Image Source="{Binding Cover}" Aspect="AspectFill" />
+                            
+                                <Image Source="{Binding Cover}" Aspect="AspectFill"  />
                                 
                                 
                                 
-                                <Button Text="View" BackgroundColor="{StaticResource Primary}" Grid.Row="1" TextColor="{StaticResource background}" />
-                            </Grid>
+                               
+                           
                             </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
