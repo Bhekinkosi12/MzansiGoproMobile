@@ -6,7 +6,7 @@ using MzansiGopro.Models.microModel;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using System.Linq;
-
+using MzansiGopro.Models.CollectiveModel;
 using MzansiGopro.Services;
 using Xamarin.Essentials;
 using System.IO;
@@ -48,6 +48,8 @@ namespace MzansiGopro.ViewModels.BusinessVM
         public Command AddItem { get; }
         public Command SaveEditedProduct { get; }
 
+        public Command SaveEditedOffer { get; }
+
 
 
 
@@ -64,6 +66,7 @@ namespace MzansiGopro.ViewModels.BusinessVM
             DeleteRequest = new Command<Products>(OnDeleteRequest);
             DeleteConfirm = new Command(OnDeleteItem);
             DeleteDenied = new Command(OnCancelDelete);
+            SaveEditedOffer = new Command(OnSaveOffer);
 
             
         }
@@ -368,21 +371,22 @@ namespace MzansiGopro.ViewModels.BusinessVM
 
             UserDataStorage storage = new UserDataStorage();
 
-            PickOptions pickOption = new PickOptions()
-            {
-                FileTypes = FilePickerFileType.Images,
-                PickerTitle = "Please select images or video"
-            };
-            var picked = await storage.PickMedia(pickOption, "nameAndemail");
-
-            var file = await picked.OpenReadAsync();
-
-
 
 
 
             try
             {
+
+                PickOptions pickOption = new PickOptions()
+                {
+                    FileTypes = FilePickerFileType.Images,
+                    PickerTitle = "Please select images or video"
+                };
+                var picked = await storage.PickMedia(pickOption, "nameAndemail");
+
+                var file = await picked.OpenReadAsync();
+
+
 
                 var link = storage.AddStoreStream("Covers", picked.FileName, file as FileStream);
 
@@ -402,6 +406,39 @@ namespace MzansiGopro.ViewModels.BusinessVM
 
 
 
+
+        public async void OnSaveOffer()
+        {
+            AdminBusinessViewModel businessViewModel = new AdminBusinessViewModel();
+
+            List<Products> productslist = new List<Products>();
+
+            foreach(var item in ProductList)
+            {
+                productslist.Add(item);
+            }
+
+
+            var product = new ProductListModel()
+            {
+                 Layout = Layout,
+                  ListName = OfferName,
+                   Products = productslist
+            };
+
+
+            try
+            {
+                businessViewModel.SaveSelectedOffer(product);
+                await Shell.Current.GoToAsync("..");
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
+
+
+        }
 
 
 

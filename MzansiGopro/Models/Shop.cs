@@ -20,6 +20,7 @@ namespace MzansiGopro.Models
         public List<image> StoreImage { get; set; }
         public Hashtable ProductList { get; set; }
         public string BusinessOfferID { get; set; }
+        public BusinessOffers BusinessOffers { get; set; }
         
         public string Poster { get; set; }
         public string Email { get; set; }

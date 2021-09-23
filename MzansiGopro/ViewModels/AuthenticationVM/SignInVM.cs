@@ -9,6 +9,7 @@ using MzansiGopro.Services;
 using Xamarin.Essentials;
 using System.IO;
 using MzansiGopro.Models;
+using MzansiGopro.Models.CollectiveModel;
 using MzansiGopro.Services.AuthSercurity;
 
 namespace MzansiGopro.ViewModels.AuthenticationVM
@@ -576,7 +577,34 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
 
 
             RunTimeUser.Location = Location;
-            
+
+
+            List<ProductListModel> listModels = new List<ProductListModel>();
+
+            foreach(var item in Offer)
+            {
+
+                var productlist = new ProductListModel()
+                {
+                    Layout = "Card",
+                    ListName = item.Name,
+                    Products = new List<Products>()
+            };
+
+                listModels.Add(productlist);
+            }
+
+
+
+
+
+
+            var businessOffer = new BusinessOffers()
+            {
+                  ProductListID = Guid.NewGuid().ToString(),
+                   OfferList = listModels
+                 
+            };
 
 
             List<offer> _offers = new List<offer>();
@@ -606,7 +634,8 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
                  StoreImage = _images,
                   Offers = _offers,
                    Location = Location,
-                   Cover_Img = CoverImage
+                   Cover_Img = CoverImage,
+                    BusinessOffers = businessOffer
                       
 
             };

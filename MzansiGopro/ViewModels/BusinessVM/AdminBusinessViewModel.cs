@@ -4,7 +4,8 @@ using System.Text;
 using MzansiGopro.Models.CollectiveModel;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
-
+using MzansiGopro.Services.BusinessData;
+using MzansiGopro.Services;
 
 namespace MzansiGopro.ViewModels.BusinessVM
 {
@@ -147,6 +148,21 @@ namespace MzansiGopro.ViewModels.BusinessVM
             return OfferSelected;
         }
 
+        public void SaveSelectedOffer(ProductListModel _productListModel)
+        {
+            IsBusy = true;
+            Productmodel.Remove(OfferSelected);
+            Productmodel.Add(_productListModel);
+
+
+            UserDataBase dataBase = new UserDataBase();
+
+            
+
+
+            IsBusy = false;
+        }
+
         void tempData()
         {
 
@@ -247,11 +263,7 @@ namespace MzansiGopro.ViewModels.BusinessVM
 
 
 
-        public void OnSaveEditedoffer()
-        {
-
-        }
-
+      
 
 
 

@@ -14,7 +14,7 @@
                 <RowDefinition Height="50" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Button Text="Save"  HorizontalOptions="EndAndExpand" BackgroundColor="#787ff6" TextColor="#fff"  />
+            <Button Text="Save" Command="{Binding SaveEditedOffer}"  HorizontalOptions="EndAndExpand" BackgroundColor="#787ff6" TextColor="#fff"  />
             <Button Text="Cancel"  HorizontalOptions="StartAndExpand" BackgroundColor="#fff" BorderColor="Red" BorderWidth="1" TextColor="Red"  />
 
             <Frame Padding="0" BackgroundColor="Transparent" Grid.Row="1">
@@ -75,6 +75,13 @@
                     <StackLayout Orientation="Horizontal" Padding="10"  >
 
                         <CollectionView ItemsSource="{Binding ProductList}" >
+
+                                    <CollectionView.Header>
+                                        <Frame BackgroundColor="Transparent" Padding="10,0" HeightRequest="30">
+                                            <Button Text="Add" TextColor="#fff" BackgroundColor="{StaticResource defaultPurple}" Padding="0" CornerRadius="15" HorizontalOptions="EndAndExpand" VerticalOptions="Center" />
+                                        </Frame>
+                                    </CollectionView.Header>
+                            
 
                             <CollectionView.EmptyViewTemplate>
                                 <DataTemplate>
@@ -142,7 +149,7 @@
                                                             </CollectionView.ItemsLayout>
                                                             <CollectionView.EmptyViewTemplate>
                                                                 <DataTemplate>
-                                                                    <Frame >
+                                                                    <Frame CornerRadius="10" BorderColor="#000080" BackgroundColor="Transparent" Padding="7,3" >
                                                                         <Label Text="Add item Ingrient" TextColor="#191919" />
                                                                     </Frame>
                                                                 </DataTemplate>

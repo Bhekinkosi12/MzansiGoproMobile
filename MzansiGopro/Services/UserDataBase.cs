@@ -239,10 +239,36 @@ namespace MzansiGopro.Services
         }
 
 
+       public async Task UpDateBusinessAsync(Shop newShop)
+        {
+
+            try
+            {
+
+            var business = (await client
+               .Child("Users")
+                    .Child("IsBusiness")
+                    .OnceAsync<Shop>()).FirstOrDefault(x => x.Object.BusinessOfferID == newShop.BusinessOfferID);
+
+            await client
+                .Child("Users")
+                    .Child("IsBusiness")
+                       .Child(business.Key)
+                         .PutAsync(newShop);
+            }
+            catch(Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
+        }
+
 
 
         public async Task<bool> AddBusinessAsync(Shop shop)
         {
+            string shopId = $"{shop.Email};;{shop.Name}";
+            
+
             try
             {
 
@@ -251,6 +277,7 @@ namespace MzansiGopro.Services
                     await client
                         .Child("Users")
                         .Child("IsBusiness")
+                        
                         .PostAsync(shop);
 
 

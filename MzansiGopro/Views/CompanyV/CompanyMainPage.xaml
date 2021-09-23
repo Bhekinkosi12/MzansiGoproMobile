@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:compound="clr-namespace:MzansiGopro.Models.CollectiveModel"
+             xmlns:micromodel="clr-namespace:MzansiGopro.Models.microModel"
              xmlns:model="clr-namespace:MzansiGopro.Models"
              xmlns:community="http://xamarin.com/schemas/2020/toolkit" xmlns:businessvm="clr-namespace:MzansiGopro.ViewModels.BusinessVM" Shell.NavBarIsVisible="False"
              x:Class="MzansiGopro.Views.CompanyV.CompanyMainPage">
@@ -227,10 +228,20 @@
                                                                 <Image Source="{Binding Image}" Aspect="AspectFill"  />
                                                                     </Frame>
 
+
+                                                                    <Frame Grid.Row="1" BackgroundColor="Transparent" Padding="0" >
+                                                                        <Grid>
+                                                                            <Grid.RowDefinitions>
+                                                                                <RowDefinition Height="20" />
+                                                                                <RowDefinition Height="30" />
+                                                                            </Grid.RowDefinitions>
+                                                                            <Grid.ColumnDefinitions>
+                                                                                <ColumnDefinition Width="*" />
+                                                                                <ColumnDefinition Width="auto" />
+                                                                            </Grid.ColumnDefinitions>
+                                                                            
                                                                 
-                                                                
-                                                                
-                                                                <Label  Margin="10,0" TextColor="{StaticResource text}"  Grid.Row="1">
+                                                                <Label  Margin="10,0" TextColor="{StaticResource text}"  Grid.Column="1" >
                                                                     <Label.FormattedText>
                                                                         <FormattedString>
                                                                             <Span Text="R " TextColor="{StaticResource text}" />
@@ -238,6 +249,49 @@
                                                                         </FormattedString>
                                                                     </Label.FormattedText>
                                                                 </Label>
+
+                                                                            <CollectionView ItemsSource="{Binding Ingredient}"  Grid.Row="1"   HeightRequest="37" Margin="10,0" ItemSizingStrategy="MeasureAllItems" >
+                                                                                <CollectionView.ItemsLayout>
+                                                                                    <LinearItemsLayout Orientation="Horizontal"  ItemSpacing="10"/>
+                                                                                </CollectionView.ItemsLayout>
+                                                                                <CollectionView.EmptyViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <Frame CornerRadius="10" BorderColor="#000080" BackgroundColor="Transparent" Padding="7,3" >
+                                                                                            <Label Text="Add item Ingrient" TextColor="#191919" />
+                                                                                        </Frame>
+                                                                                    </DataTemplate>
+
+                                                                                </CollectionView.EmptyViewTemplate>
+
+                                                                                <CollectionView.ItemTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <Frame BackgroundColor="Transparent" Padding="7,3" x:DataType="micromodel:offer" Margin="0,2" CornerRadius="10" BorderColor="#000080"  >
+                                                                                            <Grid>
+                                                                                                <Grid.ColumnDefinitions>
+                                                                                                    <ColumnDefinition Width="*" />
+
+                                                                                                </Grid.ColumnDefinitions>
+
+                                                                                                <Label Text="{Binding Name}" TextColor="#191919" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+
+
+
+                                                                                            </Grid>
+                                                                                        </Frame>
+                                                                                    </DataTemplate>
+                                                                                </CollectionView.ItemTemplate>
+
+
+                                                                            </CollectionView>
+
+
+
+
+
+                                                                        </Grid>
+                                                                        
+                                                                        
+                                                                    </Frame>
 
 
                                                                     <Button Text="View" BackgroundColor="#591da9" Padding="0"  CornerRadius="15" TextColor="{StaticResource background}" Grid.Row="2" />
