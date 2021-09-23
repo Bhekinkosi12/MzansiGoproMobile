@@ -78,7 +78,7 @@
 
                                     <CollectionView.Header>
                                         <Frame BackgroundColor="Transparent" Padding="10,0" HeightRequest="30">
-                                            <Button Text="Add" TextColor="#fff" BackgroundColor="{StaticResource defaultPurple}" Padding="0" CornerRadius="15" HorizontalOptions="EndAndExpand" VerticalOptions="Center" />
+                                            <Button Text="Add" TextColor="#fff" Command="{Binding AddProduct}" BackgroundColor="{StaticResource defaultPurple}" Padding="0" CornerRadius="15" HorizontalOptions="EndAndExpand" VerticalOptions="Center" />
                                         </Frame>
                                     </CollectionView.Header>
                             

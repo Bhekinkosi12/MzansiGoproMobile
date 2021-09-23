@@ -50,6 +50,8 @@ namespace MzansiGopro.ViewModels.BusinessVM
 
         public Command SaveEditedOffer { get; }
 
+        public Command AddProduct { get; }
+
 
 
 
@@ -67,6 +69,8 @@ namespace MzansiGopro.ViewModels.BusinessVM
             DeleteConfirm = new Command(OnDeleteItem);
             DeleteDenied = new Command(OnCancelDelete);
             SaveEditedOffer = new Command(OnSaveOffer);
+
+            AddProduct = new Command(OnAddProduct);
 
             
         }
@@ -438,6 +442,13 @@ namespace MzansiGopro.ViewModels.BusinessVM
             }
 
 
+        }
+
+
+        void OnAddProduct()
+        {
+            IsSelected = true;
+            
         }
 
 

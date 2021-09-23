@@ -588,7 +588,8 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
                 {
                     Layout = "Card",
                     ListName = item.Name,
-                    Products = new List<Products>()
+                    Products = new List<Products>(),
+                     ListID = ""
             };
 
                 listModels.Add(productlist);
@@ -603,7 +604,7 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
             {
                   ProductListID = Guid.NewGuid().ToString(),
                    OfferList = listModels
-                 
+                  
             };
 
 
@@ -639,7 +640,7 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
                       
 
             };
-
+            RunTimeBusiness = shop;
 
             try
             {

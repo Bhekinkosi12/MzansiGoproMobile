@@ -13,6 +13,7 @@ namespace MzansiGopro.Models
         public string ID { get; set; }
         public string Name { get; set; }
         public string Cover_Img { get; set; }
+        public string Bio { get; set; }
         public List<offer> Offers { get; set; }
         public List<offer> ExtraList { get; set; }
         public Dictionary<string, DateTime> Dates { get; set; }

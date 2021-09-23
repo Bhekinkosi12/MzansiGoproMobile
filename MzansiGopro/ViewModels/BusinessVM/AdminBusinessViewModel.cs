@@ -16,8 +16,9 @@ namespace MzansiGopro.ViewModels.BusinessVM
         public AdminBusinessViewModel()
         {
             //NewbusinessStart();
-            tempData();
-            EditProductList = new Command<ProductListModel>(OnEditOffer);
+            // tempData();
+            GetAdminShop();
+             EditProductList = new Command<ProductListModel>(OnEditOffer);
         }
 
         string name;
@@ -148,15 +149,25 @@ namespace MzansiGopro.ViewModels.BusinessVM
             return OfferSelected;
         }
 
-        public void SaveSelectedOffer(ProductListModel _productListModel)
+        public async void SaveSelectedOffer(ProductListModel _productListModel)
         {
             IsBusy = true;
             Productmodel.Remove(OfferSelected);
             Productmodel.Add(_productListModel);
 
+            RunTimeBusiness.BusinessOffers.OfferList.Add(_productListModel);
 
             UserDataBase dataBase = new UserDataBase();
+            GetAdminShop();
+            try
+            {
 
+           await dataBase.UpDateBusinessAsync(RunTimeBusiness);
+            }
+            catch(Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
             
 
 
@@ -264,7 +275,27 @@ namespace MzansiGopro.ViewModels.BusinessVM
 
 
       
+        void GetAdminShop()
+        {
+         
+            CoverImage = RunTimeBusiness.Cover_Img;
+            Name = RunTimeBusiness.Name;
+            Email = RunTimeBusiness.Email;
+            Number = RunTimeBusiness.Number;
 
+
+
+            ObservableCollection<ProductListModel> listModels = new ObservableCollection<ProductListModel>();
+
+            foreach(var iten in RunTimeBusiness.BusinessOffers.OfferList)
+            {
+                listModels.Add(iten);
+            }
+
+
+            Productmodel = listModels;
+
+        }
 
 
 

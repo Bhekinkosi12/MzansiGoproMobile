@@ -24,7 +24,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Image Source="shisa1.jpg" Aspect="AspectFill" />
+                    <Image Source="{Binding CoverImage}" Aspect="AspectFill" />
                     
                     
                     
@@ -41,7 +41,7 @@
                                 <RowDefinition Height="70" />
                             </Grid.RowDefinitions>
 
-                            <Label  Text="Mzansi Go pro" TextColor="#fff" FontSize="27" Grid.RowSpan="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                            <Label  Text="{Binding Name}" TextColor="#fff" FontSize="27" Grid.RowSpan="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
 
                             <Button Text="Edit" HorizontalOptions="EndAndExpand" TextColor="#fff" BackgroundColor="Transparent" BorderColor="#fff" BorderWidth="1" />
                             <Button Text="Setting" HorizontalOptions="StartAndExpand" TextColor="#fff" BackgroundColor="Transparent" BorderColor="#fff" BorderWidth="1" />
