@@ -429,12 +429,44 @@ namespace MzansiGopro.ViewModels.BusinessVM
                   ListName = OfferName,
                    Products = productslist
             };
-            RunTimeBusiness.BusinessOffers.OfferList.Add(product);
-            RunTimeAdminOffer.OfferList.Add(product);
+
+
+
+
+
+            ObservableCollection<ProductListModel> productLists = new ObservableCollection<ProductListModel>();
+            List<ProductListModel> listModels = new List<ProductListModel>();
+
+
+            var runTimeShop = RunTimeBusiness;
+
+            listModels.Add(product);
+
+            foreach (var item in RunTimeBusiness.BusinessOffers.OfferList)
+            {
+                listModels.Add(item);
+            }
+
+            runTimeShop.BusinessOffers.OfferList = listModels;
+
+            RunTimeBusiness = runTimeShop;
+
+
+
+
+
+
+
+
+
+
+
+
+
             try
             {
                 businessViewModel.SaveSelectedOffer(product);
-                await Shell.Current.GoToAsync("..");
+                await Shell.Current.GoToAsync("../../CompanyMainPage");
             }
             catch (Exception ex)
             {

@@ -13,6 +13,7 @@ namespace MzansiGopro.ViewModels.BusinessVM
     {
 
         public static ProductListModel OfferSelected { get; set; }
+        
         public AdminBusinessViewModel()
         {
             //NewbusinessStart();
@@ -152,13 +153,12 @@ namespace MzansiGopro.ViewModels.BusinessVM
         public async void SaveSelectedOffer(ProductListModel _productListModel)
         {
             IsBusy = true;
-            Productmodel.Remove(OfferSelected);
-            Productmodel.Add(_productListModel);
+         
 
-            RunTimeBusiness.BusinessOffers.OfferList.Add(_productListModel);
+           
 
             UserDataBase dataBase = new UserDataBase();
-            GetAdminShop();
+           
             try
             {
 
@@ -168,8 +168,8 @@ namespace MzansiGopro.ViewModels.BusinessVM
             {
                 await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
-            
 
+            GetAdminShop();
 
             IsBusy = false;
         }
@@ -180,7 +180,7 @@ namespace MzansiGopro.ViewModels.BusinessVM
 
 
       
-        void GetAdminShop()
+       public void GetAdminShop()
         {
          
             CoverImage = RunTimeBusiness.Cover_Img;

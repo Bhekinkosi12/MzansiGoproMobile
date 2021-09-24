@@ -29,6 +29,7 @@ namespace MzansiGopro.Models
         public List<string> StoreImage { get; set; }
         public Dictionary<string, DateTime> Dates { get; set; }
         public Hashtable PuductsList { get; set; }
-        public bool IsActivated {get; set;} = false;
+        public bool IsActivated {get; set;} = false; 
+        public List<Events> EventsHoted { get; set; }
     }
 }

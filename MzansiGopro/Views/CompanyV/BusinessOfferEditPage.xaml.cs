@@ -75,5 +75,10 @@ namespace MzansiGopro.Views.CompanyV
             var model = BindingContext as BusinessOfferEditViewModel;
             model.OnAddMedia();
         }
+
+        private async void CancelOffer_Clicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("..");
+        }
     }
 }

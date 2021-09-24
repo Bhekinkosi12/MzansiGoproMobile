@@ -9,7 +9,7 @@
     <ContentPage.BindingContext>
         <businessvm:AdminBusinessViewModel />
     </ContentPage.BindingContext>
-    <ContentPage.Content>
+    <ContentPage.Content >
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -19,7 +19,7 @@
         <ScrollView>
             
         <StackLayout>
-            <Frame Padding="0" BackgroundColor="red"  HeightRequest="200" >
+            <Frame  Padding="0" BackgroundColor="red"  HeightRequest="200" >
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
