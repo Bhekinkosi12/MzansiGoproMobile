@@ -22,6 +22,7 @@ namespace MzansiGopro.ViewModels
        
 
         public Command<Shop> ShopTap { get; set; }
+        public Command<Shop> ShopVisit { get; set; }
         public Command Expand { get; }
         public Command RefreshShop { get; }
 
@@ -82,7 +83,7 @@ namespace MzansiGopro.ViewModels
 
             RefreshShop = new Command(UpDateShopList);
 
-
+            ShopVisit = new Command<Shop>(OnShopVisit);
         }
 
       
@@ -166,7 +167,11 @@ namespace MzansiGopro.ViewModels
                     Name = "Salon"
                 }, new offer
                 {
-                    Name = "Avon"
+                    Name = "Smooties"
+                }, 
+                new offer
+                {
+                    Name = "Biskits"
                 },
             };
 
@@ -192,6 +197,12 @@ namespace MzansiGopro.ViewModels
             }
         }
 
+       async void OnShopVisit(Shop shop)
+        {
+            SelectedShop = shop;
+            await Shell.Current.GoToAsync("BusinessDisplayPage");
+
+        }
 
 
 
@@ -206,11 +217,40 @@ namespace MzansiGopro.ViewModels
 
                 if(_shopList != null)
                 {
+                    ObservableCollection<Pin> _pins = new ObservableCollection<Pin>();
                     ShopList.Clear();
                     foreach(var shop in _shopList)
                     {
                         ShopList.Add(shop);
+
+
+
+
+
+
+
+                        var location = shop.Location.Split(';');
+                        Pin pin = new Pin()
+                        {
+                            Address = toString(shop.Offers),
+                            Label = shop.Name,
+                            Position = new Position(double.Parse(location[0]), double.Parse(location[1])),
+                            Type = PinType.Place
+
+
+                        };
+
+
+                        _pins.Add(pin);
+                       
+
+
+
+
+
                     }
+                    Pins.Clear();
+                    Pins = _pins;
                 }
 
             }
@@ -220,6 +260,18 @@ namespace MzansiGopro.ViewModels
             }
 
             IsRefreashing = false;
+
+
+
+
+
+
+
+
+
+
+
+
 
         }
 

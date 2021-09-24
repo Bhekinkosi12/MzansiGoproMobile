@@ -33,7 +33,11 @@ namespace MzansiGopro.ViewModels
         public static Shop RunTimeBusiness { get; set; }
         public static BusinessOffers RunTimeAdminOffer { get; set; }
 
+        public static Shop SelectedShop { get; set; }
+
        static User currentUser = new User();
+
+
 
         public  User CurrentUser
         {

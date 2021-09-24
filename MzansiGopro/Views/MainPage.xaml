@@ -262,7 +262,8 @@
 
 
 
-                                                            <Button Text="Visit" BackgroundColor="#591da9" HeightRequest="28" CornerRadius="10" Padding="0"   x:Name="visit" Clicked="visit_Clicked" />
+                                                            <Button Text="Visit" BackgroundColor="#591da9" HeightRequest="28" CornerRadius="10" Padding="0"   x:Name="visit" Clicked="visit_Clicked"   Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ShopViewModel}}, Path=ShopVisit}"		
+                                CommandParameter="{Binding .}" />
 
 
                                             </StackLayout>
