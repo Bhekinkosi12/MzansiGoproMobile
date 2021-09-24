@@ -4,6 +4,7 @@ using System.Text;
 using MzansiGopro.Services.EventsSV;
 using System.Collections.ObjectModel;
 using MzansiGopro.Models;
+using Xamarin.Forms;
 
 namespace MzansiGopro.ViewModels.EventsVM
 {
@@ -13,10 +14,16 @@ namespace MzansiGopro.ViewModels.EventsVM
        public ObservableCollection<Events> EventsList { get; set; }
         public ObservableCollection<News> NewsList { get; set; }
 
+        static Events SelectedEvent { get; set; }
+
+        public Command<Events> SelectEvent { get; set; }
+
         public EventsListViewModel()
         {
             getData();
             getNews();
+
+            SelectEvent = new Command<Events>(OnSelectEvent);
         }
 
 
@@ -53,6 +60,18 @@ namespace MzansiGopro.ViewModels.EventsVM
 
         }
 
+
+
+        public Events GetSelectedEvent()
+        {
+            return SelectedEvent;
+        }
+
+
+       async void OnSelectEvent(Events _events){
+            SelectedEvent = _events;
+            await Shell.Current.GoToAsync("DisplayEventPage");
+        }
 
 
 

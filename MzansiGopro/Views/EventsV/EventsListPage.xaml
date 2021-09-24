@@ -109,12 +109,13 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Frame Padding="0" BackgroundColor="{StaticResource background}" CornerRadius="15" HeightRequest="250" x:DataType="model:Events"  >
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer   Command="{Binding Source={RelativeSource AncestorType={x:Type eventsvm:EventsListViewModel}}, Path=SelectEvent}"		
+                                CommandParameter="{Binding .}" />
+                                    </Frame.GestureRecognizers>
                             
                                 <Image Source="{Binding Cover}" Aspect="AspectFill"  />
                                 
-                                
-                                
-                               
                            
                             </Frame>
                         </DataTemplate>
