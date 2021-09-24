@@ -19,8 +19,9 @@ namespace MzansiGopro.ViewModels.BusinessVM
         string email;
         string number;
 
-        ObservableCollection<ProductListModel> productModel;
-        ObservableCollection<ProductListModel> productModelList;
+        ObservableCollection<ProductListModel> productModel = new ObservableCollection<ProductListModel>();
+
+        ObservableCollection<ProductListModel> productModelList = new ObservableCollection<ProductListModel>();
 
         public BusinessDisplayViewModel()
         {
@@ -39,6 +40,9 @@ namespace MzansiGopro.ViewModels.BusinessVM
             }
 
             productModel = CardList;
+
+
+
 
 
 

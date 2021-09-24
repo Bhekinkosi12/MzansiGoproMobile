@@ -33,10 +33,19 @@ namespace MzansiGopro.Views
 
        async void currentLocation()
         {
+
+            try
+            {
             var locator = CrossGeolocator.Current;
             var position = await locator.GetPositionAsync();
             
             map.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(position.Latitude, position.Longitude), Distance.FromMiles(1)));
+
+            }
+            catch
+            {
+                await Shell.Current.DisplayAlert("Alert", "Please keep your location On for map functionality", "OK");
+            }
         }
 
 
