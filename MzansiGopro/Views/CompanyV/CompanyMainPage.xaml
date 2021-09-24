@@ -149,7 +149,7 @@
                                                         <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type businessvm:AdminBusinessViewModel}}, Path=SelectImage}" CommandParameter="{Binding .}" />
                                                     </Frame.GestureRecognizers>
                                                     
-                                                <Image HeightRequest="140" WidthRequest="130" Source="{Binding Name}" Aspect="AspectFill"  />
+                                                <Image HeightRequest="140" WidthRequest="130" Source="{Binding Url}" Aspect="AspectFill"  />
                                                 </Frame>
 
                                             </DataTemplate>

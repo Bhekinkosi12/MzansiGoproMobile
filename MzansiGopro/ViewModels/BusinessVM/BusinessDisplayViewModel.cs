@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using MzansiGopro.Models.CollectiveModel;
+using MzansiGopro.Models.microModel;
 using MzansiGopro.Models;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
@@ -22,6 +23,7 @@ namespace MzansiGopro.ViewModels.BusinessVM
         ObservableCollection<ProductListModel> productModel = new ObservableCollection<ProductListModel>();
 
         ObservableCollection<ProductListModel> productModelList = new ObservableCollection<ProductListModel>();
+        ObservableCollection<image> storeImages = new ObservableCollection<image>();
 
         public BusinessDisplayViewModel()
         {
@@ -32,16 +34,20 @@ namespace MzansiGopro.ViewModels.BusinessVM
             Number = SelectedShop.Number;
 
             ObservableCollection<ProductListModel> CardList = new ObservableCollection<ProductListModel>();
+            ObservableCollection<image> _storeImages = new ObservableCollection<image>();
 
-
-            foreach(var item in SelectedShop.BusinessOffers.OfferList)
+            foreach (var item in SelectedShop.BusinessOffers.OfferList)
             {
                 CardList.Add(item);
             }
 
             productModel = CardList;
 
-
+            foreach(var item in SelectedShop.StoreImage)
+            {
+                _storeImages.Add(item);
+            }
+            StoreImages = _storeImages;
 
 
 
@@ -79,7 +85,15 @@ namespace MzansiGopro.ViewModels.BusinessVM
                 OnPropertyChanged(nameof(Productmodel));
             }
         }
-
+        public ObservableCollection<image> StoreImages
+        {
+            get => storeImages;
+            set
+            {
+                SetProperty(ref storeImages, value);
+                OnPropertyChanged(nameof(StoreImages));
+            }
+        }
 
         public string Name
         {
