@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using System.Text;
 using MzansiGopro.Models.CollectiveModel;
+using MzansiGopro.Models.microModel;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using MzansiGopro.Services.BusinessData;
 using MzansiGopro.Services;
 
+
 namespace MzansiGopro.ViewModels.BusinessVM
 {
-   public class AdminBusinessViewModel : BaseViewModel
+    public class AdminBusinessViewModel : BaseViewModel
     {
 
         public static ProductListModel OfferSelected { get; set; }
+        public static image Seletedimage { get; set; }
         
         public AdminBusinessViewModel()
         {
@@ -20,6 +23,7 @@ namespace MzansiGopro.ViewModels.BusinessVM
             // tempData();
             GetAdminShop();
              EditProductList = new Command<ProductListModel>(OnEditOffer);
+            SelectImage = new Command<image>(OnSelectedImage);
         }
 
         string name;
@@ -30,10 +34,21 @@ namespace MzansiGopro.ViewModels.BusinessVM
         
        ObservableCollection<ProductListModel> productModel;
         ObservableCollection<ProductListModel> productModelList;
+        ObservableCollection<image> storeImages = new ObservableCollection<image>(); 
 
         public Command<ProductListModel> EditProductList { get; set; }
+        public Command<image> SelectImage { get; set; }
 
 
+        public ObservableCollection<image> StoreImages
+        {
+            get => storeImages;
+            set
+            {
+                SetProperty(ref storeImages, value);
+                OnPropertyChanged(nameof(StoreImages));
+            }
+        }
 
         public ObservableCollection<ProductListModel> ProductModelList
         {
@@ -133,7 +148,10 @@ namespace MzansiGopro.ViewModels.BusinessVM
         }
 
 
-
+        void OnSelectedImage(image _image)
+        {
+            Seletedimage = _image;
+        }
 
       async void OnEditOffer(ProductListModel _productList)
         {
@@ -149,6 +167,11 @@ namespace MzansiGopro.ViewModels.BusinessVM
         {
             return OfferSelected;
         }
+        public image GetSelectedImage()
+        {
+            return Seletedimage;
+        }
+
 
         public async void SaveSelectedOffer(ProductListModel _productListModel)
         {
@@ -166,7 +189,7 @@ namespace MzansiGopro.ViewModels.BusinessVM
             }
             catch(Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await Shell.Current.DisplayAlert("Error", "Check Internet connection", "OK");
             }
 
             GetAdminShop();
@@ -182,12 +205,17 @@ namespace MzansiGopro.ViewModels.BusinessVM
       
        public void GetAdminShop()
         {
-         
+            ObservableCollection<image> images_ = new ObservableCollection<image>();
             CoverImage = RunTimeBusiness.Cover_Img;
             Name = RunTimeBusiness.Name;
             Email = RunTimeBusiness.Email;
             Number = RunTimeBusiness.Number;
+            foreach(var item in RunTimeBusiness.StoreImage)
+            {
+                images_.Add(item);
 
+            }
+            StoreImages = images_;
 
 
             ObservableCollection<ProductListModel> listModels = new ObservableCollection<ProductListModel>();

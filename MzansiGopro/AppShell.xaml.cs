@@ -25,6 +25,7 @@ namespace MzansiGopro
             Routing.RegisterRoute(nameof(BusinessOfferEditPage), typeof(BusinessOfferEditPage));
             Routing.RegisterRoute(nameof(DisplayEventPage), typeof(DisplayEventPage));
             Routing.RegisterRoute(nameof(BusinessDisplayPage), typeof(BusinessDisplayPage));
+            Routing.RegisterRoute(nameof(BusinessImagesEdit), typeof(BusinessImagesEdit));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

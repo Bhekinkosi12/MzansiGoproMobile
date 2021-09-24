@@ -125,11 +125,41 @@
 
                     <ScrollView Grid.Row="1" Orientation="Horizontal">
                         <StackLayout Orientation="Horizontal">
-                            <Image HeightRequest="140" WidthRequest="130" Source="shisa2.jpg" Aspect="AspectFill"  />
-                            <Image HeightRequest="140" WidthRequest="130" Source="shisa3.jpg" Aspect="AspectFill" />
-                            <Image HeightRequest="140" WidthRequest="130" Source="shisa4.jpg" Aspect="AspectFill" />
-                            <Image HeightRequest="140" WidthRequest="130" Source="shisa2.jpg" Aspect="AspectFill" />
+                           
+                                    <CollectionView ItemsSource="{Binding StoreImages}">
 
+                                        <CollectionView.Header>
+                                            <Frame Padding="0" BackgroundColor="Transparent">
+                                                <Button Text="Add" HorizontalOptions="EndAndExpand" Margin="10,0" VerticalOptions="Center" BackgroundColor="{StaticResource Primary}" TextColor="#fff" />
+                                            </Frame>
+                                        </CollectionView.Header>
+                                        
+                                        <CollectionView.ItemsLayout>
+                                            <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+                                        </CollectionView.ItemsLayout>
+                                        <CollectionView.EmptyView>
+                                            <Image Source="imageFolder.png" Aspect="AspectFit" />
+
+                                        </CollectionView.EmptyView>
+
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate >
+                                                <Frame Padding="0" BackgroundColor="Transparent" CornerRadius="10" x:DataType="micromodel:image" >
+                                                    <Frame.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type businessvm:AdminBusinessViewModel}}, Path=SelectImage}" CommandParameter="{Binding .}" />
+                                                    </Frame.GestureRecognizers>
+                                                    
+                                                <Image HeightRequest="140" WidthRequest="130" Source="{Binding Name}" Aspect="AspectFill"  />
+                                                </Frame>
+
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                        
+                                        
+                                    </CollectionView>
+                            
+                            
+                             
                         </StackLayout>
                         
                     </ScrollView>
@@ -153,16 +183,24 @@
 
                     <CollectionView ItemsSource="{Binding Productmodel}" >
 
-                        <CollectionView.EmptyViewTemplate>
+                            <CollectionView.Header>
+                                <Frame Padding="0" BackgroundColor="Transparent">
+                                    <Button Text="Add" HorizontalOptions="EndAndExpand" Margin="10,0" VerticalOptions="Center" BackgroundColor="{StaticResource Primary}" TextColor="#fff" />
+                                </Frame>
+                            </CollectionView.Header>
+
+                            <CollectionView.EmptyViewTemplate>
                             <DataTemplate>
                                 <Frame >
-                                    <StackLayout>
+                                   
                                         <Image Source="imageFolder.png" Aspect="AspectFit" />
-                                        <Label Text="No Items Yet" TextColor="#191919" />
-                                    </StackLayout>
+                                       
                                 </Frame>
                             </DataTemplate>
                         </CollectionView.EmptyViewTemplate>
+                            <CollectionView.EmptyView>
+                                <Image Source="imageFolder.png" Aspect="AspectFit" />
+                            </CollectionView.EmptyView>
 
 
                         <CollectionView.ItemTemplate>
@@ -230,7 +268,7 @@
 
 
                                                                     <Frame Grid.Row="1" BackgroundColor="Transparent" Padding="0" >
-                                                                        <Grid>
+                                                                        <Grid RowSpacing="5">
                                                                             <Grid.RowDefinitions>
                                                                                 <RowDefinition Height="20" />
                                                                                 <RowDefinition Height="30" />
@@ -239,9 +277,10 @@
                                                                                 <ColumnDefinition Width="*" />
                                                                                 <ColumnDefinition Width="auto" />
                                                                             </Grid.ColumnDefinitions>
-                                                                            
-                                                                
-                                                                <Label  Margin="10,0" TextColor="{StaticResource text}"  Grid.Column="1" >
+                                                                            <Label Text="{Binding Name}" TextColor="{StaticResource text}" />
+
+
+                                                                            <Label  Margin="10,0" TextColor="{StaticResource text}"  Grid.Column="1" >
                                                                     <Label.FormattedText>
                                                                         <FormattedString>
                                                                             <Span Text="R " TextColor="{StaticResource text}" />

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:businessvm="clr-namespace:MzansiGopro.ViewModels.BusinessVM"
+             x:Class="MzansiGopro.Views.CompanyV.BusinessImagesEdit">
+    <ContentPage.BindingContext>
+        <businessvm:BusinessImageEdit />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+
+            <Button BackgroundColor="Transparent" Command="{Binding Cancel}"  HorizontalOptions="StartAndExpand" Text="Cancel" BorderColor="Red" BorderWidth="1" TextColor="Red" />
+
+
+
+
+            <Frame Padding="0" BackgroundColor="Transparent" Grid.Row="1" >
+                <Image Aspect="AspectFit" Source="{Binding Image}" />
+            </Frame>
+            
+            
+            
+            
+            
+            
+            
+            
+            <Button BackgroundColor="Transparent" HorizontalOptions="Start" Command="{Binding Delete}" Text="Delete" BorderColor="Red" BorderWidth="1" TextColor="Red" Grid.Row="2" />
+            <Button BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Command="{Binding Save}" Text="Cancel" BorderColor="Red" BorderWidth="1" TextColor="Red" Grid.Row="2" />
+            
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

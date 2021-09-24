@@ -446,7 +446,7 @@ namespace MzansiGopro.ViewModels.BusinessVM
             {
                 listModels.Add(item);
             }
-
+            runTimeShop.BusinessOffers.OfferList.Clear();
             runTimeShop.BusinessOffers.OfferList = listModels;
 
             RunTimeBusiness = runTimeShop;
