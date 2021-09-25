@@ -668,7 +668,7 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
             }
             catch(Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await Shell.Current.DisplayAlert("Error", "Unexpected Error", "OK");
             }
 
 

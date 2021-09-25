@@ -12,7 +12,7 @@
              x:Class="MzansiGopro.Views.MainPage">
     <ContentPage.Resources>
 
-        <animate:RotateToAnimation x:Key="rotate" Duration="2000" Easing="Linear" RepeatForever="True" Rotation="360" Target="{x:Reference showStoresBTN}"  />
+        <animate:RotateToAnimation x:Key="rotate" Duration="3000" Easing="Linear" RepeatForever="True" Rotation="360" Target="{x:Reference showStoresBTN}"  />
         <animate:HeartAnimation x:Key="heart" Duration="2000" Easing="Linear" RepeatForever="True"  Delay="1000" Target="{x:Reference showStoresBTN}"  />
     </ContentPage.Resources>
     <ContentPage.BindingContext>
@@ -173,7 +173,7 @@
 
 
 
-                    <RefreshView Grid.Row="1" IsRefreshing="{Binding IsRefreashing}"  Command="{Binding RefreshShop}">
+                    <RefreshView Grid.Row="1" IsRefreshing="{Binding IsRefreashing}"   Command="{Binding RefreshShop}">
                         <ScrollView>
                             <StackLayout Orientation="Horizontal">
                                 

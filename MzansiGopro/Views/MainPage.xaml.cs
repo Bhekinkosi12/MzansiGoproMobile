@@ -193,7 +193,7 @@ namespace MzansiGopro.Views
           
 
 
-
+            /*
             
             foreach(var _value in _shopsList)
             {
@@ -206,15 +206,39 @@ namespace MzansiGopro.Views
                     _shopsList.Add(_value);
                 }
             }
+            */
 
+
+            for(var i = 0; i < _shopsList.Count; i++)
+            {
+
+                if (!filteredItems.Contains(_shopsList[i]))
+                {
+                    _shopsList.Remove(_shopsList[i]);
+                }
+                else if (!_shopsList.Contains(_shopsList[i]))
+                {
+                    _shopsList.Add(_shopsList[i]);
+                }
+
+            }
+
+
+
+
+            /*
             foreach(var item in _shopsList)
             {
                 _shops.Add(item);
             }
 
-            model.ShopList.Clear();
-            model.ShopList = _shops;
+            */
 
+            //model.ShopList.Clear();
+            // model.ShopList = _shops;
+
+            
+            storeCollective.ItemsSource = _shopsList;
 
         }
     }
