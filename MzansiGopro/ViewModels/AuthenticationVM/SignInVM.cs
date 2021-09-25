@@ -657,7 +657,7 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
                 if (IsComplete && isCompleted)
                 {
                     await Shell.Current.DisplayAlert("Success", "You are registered", "OK");
-                    await Shell.Current.GoToAsync("CompanyMainPage");
+                    await Shell.Current.GoToAsync("../../CompanyMainPage");
                 }
                 else
                 {
