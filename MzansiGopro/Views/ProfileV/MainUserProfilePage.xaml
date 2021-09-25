@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="100" />
+                <RowDefinition Height="180" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
@@ -16,16 +16,45 @@
             <Frame Padding="0" BackgroundColor="Transparent" Grid.Row="1" >
                 <StackLayout >
 
-                    <punny:PancakeView Margin="30,16" HeightRequest="170" CornerRadius="20" WidthRequest="300" HorizontalOptions="Center"  >
+                    <punny:PancakeView Margin="30,16" HeightRequest="70" CornerRadius="20" BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,1" WidthRequest="300" HorizontalOptions="Center"  >
                         <punny:PancakeView.Shadow>
                             <punny:DropShadow BlurRadius="4" Color="#000" Offset=".5,.5" />
                         </punny:PancakeView.Shadow>
+                        <punny:PancakeView.BackgroundGradientStops>
+                            <punny:GradientStopCollection>
+                                <punny:GradientStop Color="#cc208e" Offset="0" />
+                                <punny:GradientStop Color="#6713d2" Offset="1" />
+                            </punny:GradientStopCollection>
+                        </punny:PancakeView.BackgroundGradientStops>
+                        <punny:PancakeView.GestureRecognizers>
+                            <TapGestureRecognizer  x:Name="business" Tapped="business_Tapped" />
+                        </punny:PancakeView.GestureRecognizers>
 
-                        <Label Text="Host Business" TextColor="#fff" FontSize="19" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                        <Label Text="Hosted Business" TextColor="#fff" FontSize="19" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                     </punny:PancakeView>
-                    
-                    
-                    
+
+
+
+
+                    <punny:PancakeView Margin="30,16" HeightRequest="70" CornerRadius="20" BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,1" WidthRequest="300" HorizontalOptions="Center"  >
+                        <punny:PancakeView.Shadow>
+                            <punny:DropShadow BlurRadius="4" Color="#000" Offset=".5,.5" />
+                        </punny:PancakeView.Shadow>
+                        <punny:PancakeView.BackgroundGradientStops>
+                            <punny:GradientStopCollection>
+                                <punny:GradientStop Color="#f43b47" Offset="0" />
+                                <punny:GradientStop Color="#453a94" Offset="1" />
+                            </punny:GradientStopCollection>
+                        </punny:PancakeView.BackgroundGradientStops>
+                        <punny:PancakeView.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="events" Tapped="events_Tapped" />
+                        </punny:PancakeView.GestureRecognizers>
+
+                        <Label Text="Hosted Events" TextColor="#fff" FontSize="19" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                    </punny:PancakeView>
+
+
+
                 </StackLayout>
                 
             </Frame>

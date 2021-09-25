@@ -203,30 +203,38 @@ namespace MzansiGopro.ViewModels.BusinessVM
 
 
       
-       public void GetAdminShop()
+       public async void GetAdminShop()
         {
-            ObservableCollection<image> images_ = new ObservableCollection<image>();
-            CoverImage = RunTimeBusiness.Cover_Img;
-            Name = RunTimeBusiness.Name;
-            Email = RunTimeBusiness.Email;
-            Number = RunTimeBusiness.Number;
-            foreach(var item in RunTimeBusiness.StoreImage)
+            try
             {
-                images_.Add(item);
 
+                ObservableCollection<image> images_ = new ObservableCollection<image>();
+                CoverImage = RunTimeBusiness.Cover_Img;
+                Name = RunTimeBusiness.Name;
+                Email = RunTimeBusiness.Email;
+                Number = RunTimeBusiness.Number;
+                foreach(var item in RunTimeBusiness.StoreImage)
+                {
+                    images_.Add(item);
+
+                }
+                StoreImages = images_;
+
+
+                ObservableCollection<ProductListModel> listModels = new ObservableCollection<ProductListModel>();
+
+                foreach(var iten in RunTimeBusiness.BusinessOffers.OfferList)
+                {
+                    listModels.Add(iten);
+                }
+
+
+                Productmodel = listModels;
             }
-            StoreImages = images_;
-
-
-            ObservableCollection<ProductListModel> listModels = new ObservableCollection<ProductListModel>();
-
-            foreach(var iten in RunTimeBusiness.BusinessOffers.OfferList)
+            catch
             {
-                listModels.Add(iten);
+                await Shell.Current.GoToAsync("LoginPage");
             }
-
-
-            Productmodel = listModels;
 
         }
 
