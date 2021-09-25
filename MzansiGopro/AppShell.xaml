@@ -106,9 +106,7 @@
     <TabBar >
         <ShellContent Route="MainPage" ContentTemplate="{DataTemplate local:MainPage}" />
     </TabBar>
-    <TabBar >
-        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate Auth:LoginPage}" />
-    </TabBar>
+   
 
     <!-- Optional Templates 
     // These may be provided inline as below or as separate classes.

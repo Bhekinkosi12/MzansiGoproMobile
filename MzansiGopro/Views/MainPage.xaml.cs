@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MzansiGopro.ViewModels;
+using MzansiGopro.Models.microModel;
+using MzansiGopro.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
-
+using System.Collections.ObjectModel;
 using Plugin.Geolocator;
+
 
 namespace MzansiGopro.Views
 {
@@ -160,6 +163,58 @@ namespace MzansiGopro.Views
         private async void growBTN_Clicked(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync("CompanyListPage");
+
+        }
+
+        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var model = BindingContext as ShopViewModel;
+            ObservableCollection<Shop> _shops = new ObservableCollection<Shop>();
+            List<Shop> _shopsList = new List<Shop>();
+
+            _shopsList = model.ShopList.ToList();
+            
+            _shops = model.ShopList;
+            var searchTerm = e.NewTextValue;
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
+
+                searchTerm = string.Empty;
+            }
+
+
+            searchTerm = searchTerm.ToLower();
+
+
+            
+
+
+            var filteredItems = model.ShopList.Where(x => x.Name.ToLower().Contains(searchTerm)).ToList();
+          
+
+
+
+            
+            foreach(var _value in _shopsList)
+            {
+                if (!filteredItems.Contains(_value))
+                {
+                    _shopsList.Remove(_value);
+                }
+                else if (!_shopsList.Contains(_value))
+                {
+                    _shopsList.Add(_value);
+                }
+            }
+
+            foreach(var item in _shopsList)
+            {
+                _shops.Add(item);
+            }
+
+            model.ShopList.Clear();
+            model.ShopList = _shops;
+
 
         }
     }
