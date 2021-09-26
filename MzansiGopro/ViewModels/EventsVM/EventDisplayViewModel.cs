@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
+using System.Collections.ObjectModel;
+using Xamarin.Forms;
+using Xamarin.Forms.Maps;
+using MzansiGopro.Models.microModel;
+
 namespace MzansiGopro.ViewModels.EventsVM
 {
    public class EventDisplayViewModel : BaseViewModel
@@ -9,7 +14,7 @@ namespace MzansiGopro.ViewModels.EventsVM
 
         string location;
         string image;
-
+        ObservableCollection<Pin> pins = new ObservableCollection<Pin>();
 
         public EventDisplayViewModel()
         {
@@ -39,16 +44,45 @@ namespace MzansiGopro.ViewModels.EventsVM
             }
         }
 
+       public ObservableCollection<Pin> Pins
+        {
+            get => pins;
+            set
+            {
+                SetProperty(ref pins, value);
+                OnPropertyChanged(nameof(Pins));
+            }
+        }
 
 
 
         void GetEvent()
         {
             EventsListViewModel eventsList = new EventsListViewModel();
+            ObservableCollection<Pin> _pins = new ObservableCollection<Pin>();
             var events = eventsList.GetSelectedEvent();
 
             Location = events.Location;
             Image = events.Cover;
+
+
+            var location = events.Location.Split(';');
+            Pin pin = new Pin()
+            {
+                Address = "Upcoming",
+                Label = "Endubeni",
+                Position = new Position(double.Parse(location[0]), double.Parse(location[1])),
+                Type = PinType.Place
+
+
+            };
+
+            _pins.Add(pin);
+            Pins = _pins;
+
+            
+
+
         }
 
 

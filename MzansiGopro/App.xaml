@@ -11,6 +11,7 @@
             <Color x:Key="Primary">#000670</Color>
             <Color x:Key="background">#fff</Color>
             <Color x:Key="defaultPurple">#787ff6</Color>
+            <Color x:Key="secondaryPurple">#591da9</Color>
             <Color x:Key="text">#181818</Color>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
