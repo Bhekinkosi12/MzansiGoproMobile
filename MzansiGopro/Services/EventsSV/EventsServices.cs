@@ -24,35 +24,23 @@ namespace MzansiGopro.Services.EventsSV
             {
                 new Events
                 {
-                     Cover = "shisa1.jpg",
-                      Location = "",
+                     Cover = "event1.jpg",
+                      Location = "-26.5476126;29.0822674",
                        ID = Guid.NewGuid().ToString(),
                        
                 },new Events
                 {
-                     Cover = "shisa2.jpg",
-                      Location = "",
+                     Cover = "event2.jpg",
+                      Location = "-26.5475326;29.0822629",
                        ID = Guid.NewGuid().ToString(),
                        
                 },new Events
                 {
-                     Cover = "shisa1.jpg",
-                      Location = "",
+                     Cover = "event3.jpg",
+                      Location = "-26.5776126;29.0322674",
                        ID = Guid.NewGuid().ToString(),
                        
-                },new Events
-                {
-                     Cover = "shisa4.jpg",
-                      Location = "",
-                       ID = Guid.NewGuid().ToString(),
-                       
-                },new Events
-                {
-                     Cover = "shisa3.jpg",
-                      Location = "",
-                       ID = Guid.NewGuid().ToString(),
-                       
-                },
+                }
             };
         }        
 

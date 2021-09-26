@@ -26,7 +26,7 @@
 
 
 
-                    <CollectionView ItemsSource="{Binding NewsList}" HeightRequest="190">
+                    <CollectionView ItemsSource="{Binding NewsList}" HeightRequest="200">
                         <CollectionView.ItemsLayout>
                             <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
                         </CollectionView.ItemsLayout>
@@ -42,7 +42,7 @@
 
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <Frame Padding="0,5" BackgroundColor="Transparent" WidthRequest="200"  x:DataType="model:News" CornerRadius="15" >
+                                <Frame Padding="0,5" Margin="0,10" BackgroundColor="Transparent" WidthRequest="200"  x:DataType="model:News" CornerRadius="15" >
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="30" />
@@ -108,7 +108,7 @@
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame Padding="0" BackgroundColor="{StaticResource background}" CornerRadius="15" HeightRequest="250" x:DataType="model:Events"  >
+                            <Frame Padding="0" BackgroundColor="{StaticResource background}" CornerRadius="5" HeightRequest="220" x:DataType="model:Events"  >
                                     <Frame.GestureRecognizers>
                                         <TapGestureRecognizer   Command="{Binding Source={RelativeSource AncestorType={x:Type eventsvm:EventsListViewModel}}, Path=SelectEvent}"		
                                 CommandParameter="{Binding .}" />

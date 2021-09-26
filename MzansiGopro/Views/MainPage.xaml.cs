@@ -183,15 +183,15 @@ namespace MzansiGopro.Views
             }
 
 
-            searchTerm = searchTerm.ToLower();
+            searchTerm = searchTerm.ToLowerInvariant();
 
 
             
 
 
-            var filteredItems = model.ShopList.Where(x => x.Name.ToLower().Contains(searchTerm)).ToList();
+            var filteredItems = model.ShopList.Where(x => x.Name.ToLowerInvariant().Contains(searchTerm)).ToList();
           
-
+            
 
             /*
             
@@ -216,10 +216,12 @@ namespace MzansiGopro.Views
                 {
                     _shopsList.Remove(_shopsList[i]);
                 }
+              
                 else if (!_shopsList.Contains(_shopsList[i]))
                 {
                     _shopsList.Add(_shopsList[i]);
                 }
+                
 
             }
 

@@ -7,7 +7,7 @@
         <eventsvm:EventDisplayViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <Grid>
+        <Grid Margin="0,0,0,10">
             <Grid.RowDefinitions>
                 
                 <RowDefinition Height="200" />
@@ -24,7 +24,7 @@
             <Image Source="{Binding Image}" Aspect="AspectFit" Grid.Row="1" />
 
 
-            <Button Text="Going to Event" TextColor="#fff" BackgroundColor="{StaticResource Primary}" HorizontalOptions="CenterAndExpand" Grid.Row="2" />
+            <Button Text="Going to Event" TextColor="#fff" BackgroundColor="{StaticResource defaultPurple}" CornerRadius="20" HorizontalOptions="CenterAndExpand" Grid.Row="2" />
 
 
 
