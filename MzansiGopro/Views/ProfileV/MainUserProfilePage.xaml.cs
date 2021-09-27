@@ -24,7 +24,7 @@ namespace MzansiGopro.Views.ProfileV
 
         private async void events_Tapped(object sender, EventArgs e)
         {
-            await Shell.Current.DisplayAlert("Alert", "Feature under contruction", "OK");
+            await Shell.Current.GoToAsync("MainAdminEventsPage");
         }
     }
 }

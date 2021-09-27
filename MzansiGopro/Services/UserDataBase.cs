@@ -239,6 +239,35 @@ namespace MzansiGopro.Services
         }
 
 
+       public async Task UpdateUserAsync(User _user)
+        {
+            
+            try
+            {
+              
+                    var SelectedUser = (await client
+                    .Child("Users")
+                    .Child("NotBusiness")
+                    .OnceAsync<User>()).FirstOrDefault(x => x.Object.AutomatedId == _user.AutomatedId);
+
+
+
+                await client
+                            .Child("Users")
+                            .Child("NotBusiness")
+                            .Child(SelectedUser.Key)
+                            .PutAsync(_user);
+
+                
+
+
+            }
+            catch
+            {
+                await Shell.Current.DisplayAlert("Error", "Please check your internet connection and retry.", "OK");
+            }
+        }
+
        public async Task UpDateBusinessAsync(Shop newShop)
         {
 
@@ -258,7 +287,7 @@ namespace MzansiGopro.Services
             }
             catch(Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await Shell.Current.DisplayAlert("Error","Please check your internet connection and retry.", "OK");
             }
         }
 

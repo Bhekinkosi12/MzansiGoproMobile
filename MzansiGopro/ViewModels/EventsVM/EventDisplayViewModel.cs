@@ -14,6 +14,7 @@ namespace MzansiGopro.ViewModels.EventsVM
 
         string location;
         string image;
+        string name;
         ObservableCollection<Pin> pins = new ObservableCollection<Pin>();
 
         public EventDisplayViewModel()
@@ -22,6 +23,15 @@ namespace MzansiGopro.ViewModels.EventsVM
         }
 
 
+        public string Name
+        {
+            get => name;
+            set
+            {
+                SetProperty(ref name, value);
+                OnPropertyChanged(nameof(Name));
+            }
+        }
 
         public string Location
         {

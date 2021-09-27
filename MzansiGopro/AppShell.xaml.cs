@@ -7,6 +7,7 @@ using MzansiGopro.Views.EventsV;
 using MzansiGopro.Views.AuthenticationV;
 using MzansiGopro.Views.CompanyV;
 using MzansiGopro.Views.ProfileV;
+using MzansiGopro.Views.EventsV.AdminEventsV;
 
 namespace MzansiGopro
 {
@@ -29,6 +30,8 @@ namespace MzansiGopro
             Routing.RegisterRoute(nameof(BusinessDisplayPage), typeof(BusinessDisplayPage));
             Routing.RegisterRoute(nameof(BusinessImagesEdit), typeof(BusinessImagesEdit));
             Routing.RegisterRoute(nameof(MainUserProfilePage), typeof(MainUserProfilePage));
+            Routing.RegisterRoute(nameof(MainAdminEventsPage), typeof(MainAdminEventsPage));
+            Routing.RegisterRoute(nameof(MainAddEventPage), typeof(MainAddEventPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

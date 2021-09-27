@@ -31,5 +31,6 @@ namespace MzansiGopro.Models
         public Hashtable PuductsList { get; set; }
         public bool IsActivated {get; set;} = false; 
         public List<Events> EventsHoted { get; set; }
+        public List<Events> EventsGoing { get; set; }
     }
 }

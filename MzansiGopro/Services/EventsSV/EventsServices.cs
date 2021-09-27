@@ -25,6 +25,7 @@ namespace MzansiGopro.Services.EventsSV
                 new Events
                 {
                      Cover = "event1.jpg",
+                     Name = "Enumbeni Launch",
                       Location = "-26.5476126;29.0822674",
                        ID = Guid.NewGuid().ToString(),
                        
@@ -32,12 +33,14 @@ namespace MzansiGopro.Services.EventsSV
                 {
                      Cover = "event2.jpg",
                       Location = "-26.5475326;29.0822629",
+                      Name = "Enumbeni Launch",
                        ID = Guid.NewGuid().ToString(),
                        
                 },new Events
                 {
                      Cover = "event3.jpg",
                       Location = "-26.5776126;29.0322674",
+                      Name = "Enumbeni Launch",
                        ID = Guid.NewGuid().ToString(),
                        
                 }
