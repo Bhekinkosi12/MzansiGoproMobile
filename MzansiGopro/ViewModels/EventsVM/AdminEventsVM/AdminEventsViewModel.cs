@@ -74,10 +74,14 @@ namespace MzansiGopro.ViewModels.EventsVM.AdminEventsVM
         }
 
         
-        public void OnLoadPage()
+        public async void OnLoadPage()
         {
+            HostedEvents = new ObservableCollection<Events>();
 
             ObservableCollection<Events> _events = new ObservableCollection<Events>();
+
+            try
+            {
 
             foreach(var item in RunTimeUser.EventsHoted)
             {
@@ -85,6 +89,11 @@ namespace MzansiGopro.ViewModels.EventsVM.AdminEventsVM
             }
 
             HostedEvents = _events;
+            }
+            catch
+            {
+                await Shell.Current.GoToAsync("LoginPage");
+            }
 
         }
 

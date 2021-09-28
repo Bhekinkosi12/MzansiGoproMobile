@@ -333,6 +333,7 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
                 {
                     await userDB.AddEmailAndPassword(Email,abcHash.StandardPasswordHash(Password), IsShop);
                     await Shell.Current.DisplayAlert("Congrats", "You are registed", "OK");
+                    await Shell.Current.GoToAsync("../../..");
                 }
                 else
                 {
@@ -555,7 +556,7 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await Shell.Current.DisplayAlert("Error", "Unexpected Error", "OK");
             }
 
             IsBusy = false;
