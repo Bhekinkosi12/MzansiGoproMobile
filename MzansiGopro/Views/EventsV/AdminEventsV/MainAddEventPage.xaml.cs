@@ -38,5 +38,10 @@ namespace MzansiGopro.Views.EventsV.AdminEventsV
 
 
         }
+
+        private void selectPhoto_Tapped(object sender, EventArgs e)
+        {
+
+        }
     }
 }

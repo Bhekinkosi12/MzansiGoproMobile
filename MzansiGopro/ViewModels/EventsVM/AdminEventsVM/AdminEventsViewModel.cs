@@ -92,7 +92,15 @@ namespace MzansiGopro.ViewModels.EventsVM.AdminEventsVM
             }
             catch
             {
-                await Shell.Current.GoToAsync("LoginPage");
+
+                var _user = RunTimeUser;
+
+                _user.EventsHoted = new List<Events>();
+
+                RunTimeUser = _user;
+
+
+
             }
 
         }

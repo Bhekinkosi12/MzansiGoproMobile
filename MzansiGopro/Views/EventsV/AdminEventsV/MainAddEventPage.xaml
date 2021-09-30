@@ -20,7 +20,11 @@
                     </Grid.RowDefinitions>
 
                     <Image Source="{Binding Cover}" Aspect="AspectFit" />
-                    <BoxView BackgroundColor="#000" Opacity="0.4" CornerRadius="10" />
+                    <BoxView BackgroundColor="#000" Opacity="0.4" CornerRadius="10" x:Name="selectImage"  >
+                        <BoxView.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="selectPhoto" Tapped="selectPhoto_Tapped" />
+                        </BoxView.GestureRecognizers>
+                    </BoxView>
                     <Label Text="Tap To Change Poster" TextColor="#fff" HorizontalOptions="Center" VerticalOptions="Center" />
 
                 </Grid>
