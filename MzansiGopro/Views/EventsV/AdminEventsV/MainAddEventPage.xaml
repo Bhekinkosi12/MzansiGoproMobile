@@ -46,7 +46,10 @@
 
                     <Label Text="When is event?" TextColor="#000" FontSize="17" />
 
-                    <DatePicker  BackgroundColor="#eee"  />
+                    <DatePicker  BackgroundColor="#eee" Date="{Binding EventDate}"   >
+                       
+                    </DatePicker>
+                    
 
                     <Label Text="Where is the Venue?" TextColor="#000" FontSize="17" />
 

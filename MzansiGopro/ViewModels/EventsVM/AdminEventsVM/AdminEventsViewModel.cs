@@ -16,7 +16,7 @@ namespace MzansiGopro.ViewModels.EventsVM.AdminEventsVM
 
         string name = "";
         string location = "";
-        DateTime eventDate = new DateTime();
+        DateTime eventDate = new DateTime(2021, 08, 01);
         string cover = "";
         ObservableCollection<Events> hostedEvents = new ObservableCollection<Events>();
 
