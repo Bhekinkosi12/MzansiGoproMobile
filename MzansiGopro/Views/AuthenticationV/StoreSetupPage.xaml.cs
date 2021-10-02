@@ -152,7 +152,7 @@ namespace MzansiGopro.Views.AuthenticationV
             }
             catch
             {
-                await Shell.Current.DisplayAlert("Alert", "Please allow location permission and keep location On", "OK");
+                await Shell.Current.DisplayAlert("Alert", "Please allow location permission within your settings and keep location On", "OK");
 
             }
 

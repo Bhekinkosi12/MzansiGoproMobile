@@ -9,6 +9,8 @@ using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
 using System.IO;
 using MzansiGopro.Services;
+using Plugin.Geolocator;
+using Xamarin.Forms.Maps;
 
 namespace MzansiGopro.Views.EventsV.AdminEventsV
 {
@@ -51,9 +53,34 @@ namespace MzansiGopro.Views.EventsV.AdminEventsV
 
         }
 
-        private void useLocation_Clicked(object sender, EventArgs e)
+        private async void useLocation_Clicked(object sender, EventArgs e)
         {
+            var model = BindingContext as AdminEventsViewModel;
+            model.IsBusy = true;
 
+            try
+            {
+
+                var locator = CrossGeolocator.Current;
+                var position = await locator.GetPositionAsync();
+                signMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(position.Latitude, position.Longitude), Distance.FromMiles(1)));
+
+
+                signFrame.IsVisible = true;
+
+
+
+
+                model.Location = $"{position.Latitude};{position.Longitude}";
+
+            }
+            catch
+            {
+                await Shell.Current.DisplayAlert("Alert", "Please allow location permission within your settings and keep location On", "OK");
+
+            }
+
+            model.IsBusy = false;
         }
     }
 }

@@ -1,11 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" BackgroundColor="#fff" Shell.NavBarIsVisible="False"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:punny="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:admineventsvm="clr-namespace:MzansiGopro.ViewModels.EventsVM.AdminEventsVM"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:punny="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:admineventsvm="clr-namespace:MzansiGopro.ViewModels.EventsVM.AdminEventsVM" xmlns:map="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps" xmlns:busy="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              x:Class="MzansiGopro.Views.EventsV.AdminEventsV.MainAddEventPage">
     <ContentPage.BindingContext>
         <admineventsvm:AdminEventsViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            
+        <Frame Padding="0" BackgroundColor="Transparent" >
+            
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="220" />
@@ -56,6 +64,12 @@
 
                     <Button TextColor="#fff" BackgroundColor="{StaticResource secondaryPurple}" Text="Use Current Location" CornerRadius="10" x:Name="useLocation" Clicked="useLocation_Clicked"  />
 
+                    <Frame Padding="0" BackgroundColor="Transparent" x:Name="signFrame" IsVisible="false" HeightRequest="150" >
+                        <map:Map x:Name="signMap" IsShowingUser="True" MapType="Street" >
+
+                        </map:Map>
+                    </Frame>
+
                 </StackLayout>
             </ScrollView>
 
@@ -76,6 +90,19 @@
             </Frame>
                    
             
+        </Grid>
+        </Frame>
+
+
+
+            <BoxView BackgroundColor="#fff" IsVisible="{Binding IsBusy}" Opacity="0.5" />
+            <Frame Padding="0" BackgroundColor="Transparent" x:Name="busyFrame" IsVisible="{Binding IsBusy}">
+
+
+                <busy:SfBusyIndicator AnimationType="Ball" EnableAnimation="{Binding IsBusy}"  WidthRequest="400" HeightRequest="700" HorizontalOptions="Center" VerticalOptions="Center"></busy:SfBusyIndicator>
+
+            </Frame>
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>
