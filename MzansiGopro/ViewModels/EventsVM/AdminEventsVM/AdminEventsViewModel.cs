@@ -5,6 +5,9 @@ using MzansiGopro.Models;
 using MzansiGopro.Services;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
+using Xamarin.Essentials;
+using System.IO;
+
 
 namespace MzansiGopro.ViewModels.EventsVM.AdminEventsVM
 {
@@ -148,6 +151,39 @@ namespace MzansiGopro.ViewModels.EventsVM.AdminEventsVM
 
 
 
+       public async void OnAddMediaCover()
+        {
+            IsBusy = true;
+
+            UserDataStorage storage = new UserDataStorage();
+
+            try
+            {
+                PickOptions pickOption = new PickOptions()
+                {
+                    FileTypes = FilePickerFileType.Images,
+                    PickerTitle = "Please select images or video"
+                };
+                var picked = await storage.PickMedia(pickOption, "nameAndemail");
+
+                var file = await picked.OpenReadAsync();
+
+                var link = await storage.AddStoreStream(RunTimeUser.Email, picked.FileName, file as FileStream);
+
+
+
+                Cover = link;
+
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", "Unexpected Error", "OK");
+            }
+
+            IsBusy = false;
+
+
+        }
 
 
 

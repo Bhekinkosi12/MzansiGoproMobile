@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using MzansiGopro.ViewModels.EventsVM.AdminEventsVM;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
+using System.IO;
+using MzansiGopro.Services;
 
 namespace MzansiGopro.Views.EventsV.AdminEventsV
 {
@@ -39,7 +42,16 @@ namespace MzansiGopro.Views.EventsV.AdminEventsV
 
         }
 
-        private void selectPhoto_Tapped(object sender, EventArgs e)
+        private async void selectPhoto_Tapped(object sender, EventArgs e)
+        {
+            var model = BindingContext as AdminEventsViewModel;
+
+            model.OnAddMediaCover();
+
+
+        }
+
+        private void useLocation_Clicked(object sender, EventArgs e)
         {
 
         }

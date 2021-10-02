@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:model="clr-namespace:MzansiGopro.Models"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:model="clr-namespace:MzansiGopro.Models" Shell.NavBarIsVisible="False"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:admineventsvm="clr-namespace:MzansiGopro.ViewModels.EventsVM.AdminEventsVM"
              x:Class="MzansiGopro.Views.EventsV.AdminEventsV.MainAdminEventsPage">
     <ContentPage.BindingContext>
@@ -7,12 +7,12 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Frame Padding="0" BackgroundColor="Transparent" HeightRequest="200" >
+            <Frame Padding="0" BackgroundColor="Transparent" HeightRequest="130" >
                 <Image Source="events.png" Aspect="AspectFit" />
             </Frame>
 
             <Frame Padding="10,0" BackgroundColor="Transparent" HeightRequest="30" >
-                <Button BackgroundColor="{StaticResource secondaryPurple}" Text="Add Event" x:Name="addEvent" Clicked="addEvent_Clicked"  TextColor="#fff" HorizontalOptions="EndAndExpand" />
+                <Button BackgroundColor="{StaticResource secondaryPurple}" CornerRadius="10" Padding="0" Text="Add Event" x:Name="addEvent" Clicked="addEvent_Clicked"  TextColor="#fff" HorizontalOptions="EndAndExpand" />
             </Frame>
 
             <CollectionView ItemsSource="{Binding HostedEvents}">

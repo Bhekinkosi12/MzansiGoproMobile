@@ -322,7 +322,8 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
                     Number = Number,
                     PasswordConfigID = "std",
                     Password = abcHash.StandardPasswordHash(Password),
-                    AutomatedId = $"{Email};;{Name}"
+                    AutomatedId = $"{Email};;{Name}",
+                     EventsHoted = new List<Events>()
 
                 };
 
@@ -333,7 +334,7 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
                 {
                     await userDB.AddEmailAndPassword(Email,abcHash.StandardPasswordHash(Password), IsShop);
                     await Shell.Current.DisplayAlert("Congrats", "You are registed", "OK");
-                    await Shell.Current.GoToAsync("../../..");
+                    await Shell.Current.GoToAsync("//TabbedPage");
                 }
                 else
                 {
@@ -658,7 +659,7 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
                 if (IsComplete && isCompleted)
                 {
                     await Shell.Current.DisplayAlert("Success", "You are registered", "OK");
-                    await Shell.Current.GoToAsync("../../CompanyMainPage");
+                    await Shell.Current.GoToAsync("//TabbedPage");
                 }
                 else
                 {
@@ -694,7 +695,8 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
                 Number = Number,
                 PasswordConfigID = "std",
                 Password = abcHash.StandardPasswordHash(Password),
-                AutomatedId = $"{Email};;{Name}"
+                AutomatedId = $"{Email};;{Name}",
+                 EventsHoted = new List<Events>()
 
             };
             RunTimeUser = user;
