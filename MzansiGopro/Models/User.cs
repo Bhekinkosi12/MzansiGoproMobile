@@ -2,12 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using SQLite;
 
 namespace MzansiGopro.Models
 {
+    [Table ("User")]
    public class User
     {
-
+        [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
         public string AutomatedId { get; set; }
         public string Name { get; set; }

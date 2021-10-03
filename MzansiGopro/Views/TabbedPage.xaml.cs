@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MzansiGopro.Services.LocalData;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,5 +27,12 @@ namespace MzansiGopro.Views
         {
             await Shell.Current.GoToAsync("MainUserProfilePage");
         }
+
+        protected override void OnAppearing()
+        {
+            
+            base.OnAppearing();
+        }
+
     }
 }

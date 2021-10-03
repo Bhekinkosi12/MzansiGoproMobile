@@ -11,6 +11,7 @@ using System.IO;
 using MzansiGopro.Models;
 using MzansiGopro.Models.CollectiveModel;
 using MzansiGopro.Services.AuthSercurity;
+using MzansiGopro.Services.LocalData;
 
 namespace MzansiGopro.ViewModels.AuthenticationVM
 {
@@ -279,6 +280,7 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
             
             PasswordAbcHash abcHash = new PasswordAbcHash();
             UserDataBase userDB = new UserDataBase();
+            LocalUserService localDB = new LocalUserService();
             if (IsShop == true)
             {
 
@@ -303,6 +305,7 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
                 CurrentUser = user;
                 RunTimeUser = user;
 
+                localDB.AddUser(RunTimeUser);
 
 
 
@@ -328,6 +331,7 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
                 };
 
                 RunTimeUser = user;
+                localDB.AddUser(RunTimeUser);
 
                 var complete = await userDB.AddUserAsync(user);
                 if (complete)

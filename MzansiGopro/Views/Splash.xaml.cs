@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MzansiGopro.Services.LocalData;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,13 @@ namespace MzansiGopro.Views
            
         }
 
+        protected override void OnAppearing()
+        {
+            LocalUserService localDB = new LocalUserService();
+            localDB.GetLocalUser();
+
+            base.OnAppearing();
+        }
         async void pass()
         {
             try
