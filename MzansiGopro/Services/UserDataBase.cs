@@ -74,6 +74,23 @@ namespace MzansiGopro.Services
 
         }
 
+        public async Task<User> GetUserById(string id)
+        {
+            try
+            {
+                var user = (await client
+                    .Child("Users")
+                    .Child("NotBusiness")
+                    .OnceAsync<User>()).Where(x => x.Object.AutomatedId == id).FirstOrDefault();
+
+               return await Task.FromResult(user.Object);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
 
         public async Task AddEmailAndPassword(string email,string password,bool isShop)
         {

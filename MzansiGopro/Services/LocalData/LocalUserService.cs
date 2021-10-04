@@ -44,16 +44,21 @@ namespace MzansiGopro.Services.LocalData
             }
         }
 
-        public void GetLocalUser()
+        public async void GetLocalUser()
         {
             try
             {
-                var dataPath = Path.Combine(FileSystem.AppDataDirectory, "User.db");
-                var connections = new SQLiteConnection(dataPath);
+               var id = Preferences.Get("UserID", string.Empty);
+                UserDataBase dataBase = new UserDataBase();
 
-                var table = connections.Table<User>();
-                RunTimeUser = table.FirstOrDefault();
-                
+                var user = await dataBase.GetUserById(id);
+
+                if(user != null)
+                {
+
+                RunTimeUser = user;
+                }
+
             }
             catch
             {
@@ -71,11 +76,9 @@ namespace MzansiGopro.Services.LocalData
         {
             try
             {
-                var dataPath = Path.Combine(FileSystem.AppDataDirectory, "User.db");
-               var connections = new SQLiteConnection(dataPath);
+                Preferences.Set("UserID", user.AutomatedId);
+                
 
-                connections.CreateTable<User>();
-            connections.Insert(user);
                 
             }
             catch(Exception ex)
