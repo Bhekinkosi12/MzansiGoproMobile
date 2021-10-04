@@ -13,36 +13,16 @@ namespace MzansiGopro.Services.LocalData
    public class LocalUserService : BaseViewModel
     {
 
-        SQLiteConnection connection;
+      
 
         public  LocalUserService()
         {
 
 
-            var dataPath = Path.Combine(FileSystem.AppDataDirectory ,"User.db");
-            connection = new SQLiteConnection(dataPath);
-            
-           
-
 
         }
 
-       async void Init()
-        {
-            try
-            {
-
-                if (connection == null)
-                {
-                    connection.CreateTable<User>();
-                    
-                }
-            }
-            catch(Exception ex)
-            {
-                await Shell.Current.DisplayAlert("Error", "Cant create local DB", "OK");
-            }
-        }
+      
 
         public async void GetLocalUser()
         {
@@ -66,11 +46,11 @@ namespace MzansiGopro.Services.LocalData
             }
         }
 
-        public void UpdateUser(User user)
+        public void ClearLocalDB()
         {
-            connection.DeleteAll<User>();
-            connection.Insert(user);
+            Preferences.Clear();
         }
+      
 
         public async void AddUser(User user)
         {
@@ -78,12 +58,10 @@ namespace MzansiGopro.Services.LocalData
             {
                 Preferences.Set("UserID", user.AutomatedId);
                 
-
-                
             }
             catch(Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", $"Could not add user to local DB{ex.Message}", "OK");
+                await Shell.Current.DisplayAlert("Error", $"Could not add user to local DB", "OK");
             }
             
         }

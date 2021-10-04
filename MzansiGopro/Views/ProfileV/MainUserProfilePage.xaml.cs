@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MzansiGopro.Views.CompanyV;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using MzansiGopro.ViewModels;
 
 namespace MzansiGopro.Views.ProfileV
 {
@@ -19,12 +20,28 @@ namespace MzansiGopro.Views.ProfileV
 
         private async void business_Tapped(object sender, EventArgs e)
         {
+            
+            
             await Shell.Current.GoToAsync("CompanyMainPage");
         }
 
         private async void events_Tapped(object sender, EventArgs e)
         {
+            try
+            {
+
             await Shell.Current.GoToAsync("MainAdminEventsPage");
+            }
+            catch
+            {
+                await Shell.Current.GoToAsync("LoginPage");
+            }
+        }
+
+        protected override void OnAppearing()
+        {
+
+            base.OnAppearing();
         }
     }
 }

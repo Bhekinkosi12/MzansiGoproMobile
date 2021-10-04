@@ -75,12 +75,26 @@ namespace MzansiGopro.ViewModels.EventsVM
             Location = events.Location;
             Image = events.Cover;
 
+            string EventDateNotify;
+            int dateCompare = DateTime.Compare(events.EventDateTime, DateTime.Today);
+
+            if(dateCompare == 0)
+            {
+                EventDateNotify = "Live Event";
+            }
+            else
+            {
+                EventDateNotify = "Upcoming Event";
+            }
+
+
+
 
             var location = events.Location.Split(';');
             Pin pin = new Pin()
             {
-                Address = "Upcoming",
-                Label = "Endubeni",
+                Address = EventDateNotify,
+                Label = events.Name,
                 Position = new Position(double.Parse(location[0]), double.Parse(location[1])),
                 Type = PinType.Place
 

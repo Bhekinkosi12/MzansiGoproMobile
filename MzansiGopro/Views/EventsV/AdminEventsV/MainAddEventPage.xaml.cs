@@ -82,5 +82,15 @@ namespace MzansiGopro.Views.EventsV.AdminEventsV
 
             model.IsBusy = false;
         }
+
+
+
+        protected override void OnAppearing()
+        {
+            var model = BindingContext as AdminEventsViewModel;
+            model.GetSelectedEvent();
+            base.OnAppearing();
+        }
+
     }
 }

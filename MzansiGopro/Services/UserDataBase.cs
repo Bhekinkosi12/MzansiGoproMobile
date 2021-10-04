@@ -91,6 +91,60 @@ namespace MzansiGopro.Services
             }
         }
 
+        public async Task<bool> AddEventAsync(Events _event)
+        {
+
+            try
+            {
+                await client
+                    .Child("Events")
+                    .PostAsync(_event);
+
+               return await Task.FromResult(true);
+
+            }
+            catch
+            {
+               return await Task.FromResult(false);
+            }
+
+
+        }
+
+        public async Task<List<Events>> GetAllEvents()
+        {
+            try
+            {
+                List<Events> _events = new List<Events>();
+
+               var list = (await client
+                    .Child("Events")
+                    .OnceAsync<Events>()).ToList();
+
+                foreach(var i in list)
+                {
+                    var dateCompare = DateTime.Compare(i.Object.EventDateTime, DateTime.Today);
+                    if(dateCompare >= 0)
+                    {
+                         _events.Add(i.Object);
+
+                    }
+                    else
+                    {
+                        
+                    }
+                }
+
+
+
+                return await Task.FromResult(_events);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
 
         public async Task AddEmailAndPassword(string email,string password,bool isShop)
         {
@@ -104,6 +158,16 @@ namespace MzansiGopro.Services
             await client
                 .Child("Authentications")
                 .PostAsync(auth);
+        }
+
+
+        public async Task UpdateEvent(Events events,Events newEvent)
+        {
+            var item = (await client.Child("Events").OnceAsync<Events>()).Where(x => x.Object == events).FirstOrDefault();
+
+            await client.Child("Events").Child(item.Key).PutAsync(newEvent);
+
+
         }
 
      

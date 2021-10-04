@@ -290,7 +290,7 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
 
                 var user = new User()
                 {
-                    CompanyName = ShopName,
+                   
                     Email = Email,
                     Location = Location,
                     IsShop = IsShop,
@@ -317,7 +317,7 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
 
                 var user = new User()
                 {
-                    CompanyName = ShopName,
+                    
                     Email = Email,
 
                     IsShop = IsShop,
@@ -635,7 +635,7 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
             var shop = new Shop()
             {
                 Email = RunTimeUser.Email,
-                Name = RunTimeUser.CompanyName,
+                Name = ShopName,
                 ID = $"{RunTimeUser.Email}and{RunTimeUser.Name}",
                 ExtraList = _Extraoffers,
                  StoreImage = _images,

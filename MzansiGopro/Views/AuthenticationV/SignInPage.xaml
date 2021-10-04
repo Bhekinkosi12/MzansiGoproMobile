@@ -89,13 +89,7 @@
                         </punny:PancakeView>
 
 
-                        <punny:PancakeView Style="{StaticResource entryPan}" IsVisible="{Binding IsShop}">
-                            <punny:PancakeView.Shadow>
-                                <punny:DropShadow BlurRadius="10" Color="#191919" Offset="1,1" />
-                            </punny:PancakeView.Shadow>
-
-                            <Entry Style="{StaticResource EntryGL}" x:Name="entryCompany" Text="{Binding ShopName}" Placeholder="Business Name"  />
-                        </punny:PancakeView>
+                        
 
 
                         <punny:PancakeView Style="{StaticResource entryPan}">
@@ -131,8 +125,11 @@
 
 
 
-                <Label HorizontalOptions="End" VerticalOptions="Center" Grid.Row="4" FontAttributes="Bold" Text="Login" TextColor="{StaticResource Primary}" >
+                <Label HorizontalOptions="Start" VerticalOptions="Center" Grid.Row="4" FontAttributes="Bold" Text="Login" TextColor="{StaticResource Primary}" >
 
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="loginBTN" Tapped="loginBTN_Tapped" />
+                        </Label.GestureRecognizers>
                 </Label>
                 <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="4" FontAttributes="Bold" Text="Have an Account:" TextColor="#191919" >
 

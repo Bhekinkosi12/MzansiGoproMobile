@@ -13,8 +13,9 @@ namespace MzansiGopro.Services.EventsSV
 
         public EventsServices()
         {
-            tempData();
+           // tempData();
             welcomeNews();
+            eventData();
         }
 
         void tempData()
@@ -46,6 +47,18 @@ namespace MzansiGopro.Services.EventsSV
                 }
             };
         }        
+
+       async void eventData()
+        {
+            UserDataBase userData = new UserDataBase();
+
+            var listEvent = await userData.GetAllEvents();
+
+            
+            Eventslist = listEvent;
+
+
+        }
 
 
         void welcomeNews()

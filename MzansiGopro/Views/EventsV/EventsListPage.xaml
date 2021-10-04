@@ -18,13 +18,14 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-                <Label Text="News and Events" TextColor="{StaticResource text}" FontSize="30" FontFamily="cursive" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Text="Events" TextColor="{StaticResource text}" FontSize="30" FontFamily="cursive" HorizontalOptions="Center" VerticalOptions="Center" />
 
 
             <ScrollView Grid.Row="1">
                 <StackLayout>
 
 
+                    <!--
 
                     <CollectionView ItemsSource="{Binding NewsList}" HeightRequest="200">
                         <CollectionView.ItemsLayout>
@@ -89,18 +90,18 @@
                         
                     </CollectionView>
                     
-                    
+                    -->
                     
                     
                     
                     
                 <CollectionView Grid.Row="1" ItemsSource="{Binding EventsList}">
 
-                    <CollectionView.EmptyViewTemplate>
+                    <CollectionView.EmptyView>
                         <DataTemplate>
-                            <Label Text="No Events near you" TextColor="#191919" HorizontalOptions="Center" />
+                            <Label Text="No Events for now" TextColor="#191919" HorizontalOptions="Center" />
                         </DataTemplate>
-                    </CollectionView.EmptyViewTemplate>
+                    </CollectionView.EmptyView>
 
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Span="2" Orientation="Vertical" VerticalItemSpacing="10" HorizontalItemSpacing="10" />

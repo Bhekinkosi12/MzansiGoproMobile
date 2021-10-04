@@ -11,6 +11,7 @@
             </Grid.RowDefinitions>
 
             <Image Source="travel.png" Aspect="AspectFit" />
+            <Button BackgroundColor="{StaticResource defaultPurple}" x:Name="UserLogged" Text="Log out" CornerRadius="20" HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand" />
 
 
             <Frame Padding="0" BackgroundColor="Transparent" Grid.Row="1" >

@@ -77,6 +77,10 @@ namespace MzansiGopro.Views.AuthenticationV
 
                 }
             }
+            else
+            {
+
+            }
         }
 
 
@@ -121,20 +125,44 @@ namespace MzansiGopro.Views.AuthenticationV
 
         private void entryFullName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            entryFullName.TextColor = Color.FromHex(defaultColor);
+          //  entryFullName.TextColor = Color.FromHex(defaultColor);
+
+
         }
 
         private void entryEmail_TextChanged(object sender, TextChangedEventArgs e)
         {
-            entryEmail.TextColor = Color.FromHex(defaultColor);
+           // entryEmail.TextColor = Color.FromHex(defaultColor);
+
+            if (entryEmail.Text.Contains('@'))
+            {
+                entryEmail.TextColor = Color.FromHex(successColor);
+            }
+            else
+            {
+                entryEmail.TextColor = Color.FromHex(errorColor);
+            }
+
         }
 
         private void entryNumber_TextChanged(object sender, TextChangedEventArgs e)
         {
-            entryNumber.TextColor = Color.FromHex(defaultColor);
+            //entryNumber.TextColor = Color.FromHex(defaultColor);
+
+            if(entryNumber.Text.Length != 10)
+            {
+                entryNumber.TextColor = Color.FromHex(errorColor);
+            }
+            else
+            {
+                entryNumber.TextColor = Color.FromHex(successColor);
+            }
+
         }
 
-        
-
+        private async void loginBTN_Tapped(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("..");
+        }
     }
 }

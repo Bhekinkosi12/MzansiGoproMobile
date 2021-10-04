@@ -22,6 +22,16 @@ namespace MzansiGopro.ViewModels.EventsVM.AdminEventsVM
 
 
 
+        static Events SelectedEvent { get; set; }
+        public Command<Events> SelectEvent { get; set; }
+
+        public AdminEventsViewModel()
+        {
+            SelectEvent = new Command<Events>(OnSelectedEvent);
+        }
+
+
+
 
         public DateTime EventDate
         {
@@ -112,6 +122,7 @@ namespace MzansiGopro.ViewModels.EventsVM.AdminEventsVM
 
         public async void OnAddEvent()
         {
+            SelectedEvent = null;
 
             var _event = new Events()
             {
@@ -135,6 +146,18 @@ namespace MzansiGopro.ViewModels.EventsVM.AdminEventsVM
             {
 
            await userData.UpdateUserAsync(RunTimeUser);
+
+
+                if(SelectedEvent != null)
+                {
+                    await userData.UpdateEvent(SelectedEvent, _event);
+                }
+                else
+                {
+
+                await userData.AddEventAsync(_event);
+                }
+                
                 await Shell.Current.GoToAsync("..");
             }
             catch
@@ -149,7 +172,27 @@ namespace MzansiGopro.ViewModels.EventsVM.AdminEventsVM
         }
 
 
+        public void GetSelectedEvent()
+        {
+           if(SelectedEvent != null)
+            {
+                Cover = SelectedEvent.Cover;
+                Name = SelectedEvent.Name;
+                EventDate = SelectedEvent.EventDateTime;
+                Location = SelectedEvent.Location;
+            }
+            else
+            {
 
+            }
+
+        }
+
+       async void OnSelectedEvent(Events _event)
+        {
+            SelectedEvent = _event;
+            await Shell.Current.GoToAsync("MainAddEventPage");
+        }
 
        public async void OnAddMediaCover()
         {
