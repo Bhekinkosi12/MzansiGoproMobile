@@ -277,7 +277,7 @@
                                                 <punny:DropShadow BlurRadius="10" Color="#191919" Offset="1,1" />
                                             </punny:PancakeView.Shadow>
 
-                                            <Entry Style="{StaticResource EntryGL}" Text="{Binding SelectedPrice}" />
+                                            <Entry Style="{StaticResource EntryGL}" Text="{Binding SelectedPrice}" Placeholder="25.99" x:Name="EntryPrice" />
                                         </punny:PancakeView>
 
 
@@ -355,7 +355,8 @@
                                                                         
                                                                     <Label Text="{Binding Name}" TextColor="#191919" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
 
-                                                                        <ImageButton BackgroundColor="Transparent" Grid.Column="1" Source="delete_" />
+                                                                        <ImageButton BackgroundColor="Transparent" Grid.Column="1" Source="delete_"  Command="{Binding Source={RelativeSource AncestorType={x:Type businessvm:BusinessOfferEditViewModel}}, Path=SelectEvent}"		
+                                CommandParameter="{Binding .}" />
 
                                                                     </Grid>
                                                                 </Frame>

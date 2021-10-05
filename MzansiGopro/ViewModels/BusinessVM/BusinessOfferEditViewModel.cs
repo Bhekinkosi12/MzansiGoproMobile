@@ -52,6 +52,8 @@ namespace MzansiGopro.ViewModels.BusinessVM
 
         public Command AddProduct { get; }
 
+        public Command<offer> DeleteOffer { get; set; }
+
 
 
 
@@ -71,6 +73,7 @@ namespace MzansiGopro.ViewModels.BusinessVM
             SaveEditedOffer = new Command(OnSaveOffer);
 
             AddProduct = new Command(OnAddProduct);
+            DeleteOffer = new Command<offer>(OnDeleteOffer);
 
             
         }
@@ -198,6 +201,10 @@ namespace MzansiGopro.ViewModels.BusinessVM
 
 
 
+        void OnDeleteOffer(offer _offer)
+        {
+            Offer.Remove(_offer);
+        }
 
 
         void GetData()

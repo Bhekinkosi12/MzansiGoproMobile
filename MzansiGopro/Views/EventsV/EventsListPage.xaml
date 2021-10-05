@@ -22,7 +22,7 @@
 
 
             <Frame Padding="0" BackgroundColor="Transparent" Grid.Row="1" >
-                <RefreshView IsRefreshing="{Binding IsRefreshingEvent}"  Command="{Binding RefreshEvents}" IsEnabled="{Binding IsRefreshingEvent}" x:Name="eventRefresh" >
+                <RefreshView IsRefreshing="{Binding IsRefreshingEvent, Mode=TwoWay}"  Command="{Binding RefreshEvents}" IsEnabled="{Binding IsRefreshingEvent,Mode=TwoWay}" x:Name="eventRefresh" >
                     
             <ScrollView >
                 <StackLayout>

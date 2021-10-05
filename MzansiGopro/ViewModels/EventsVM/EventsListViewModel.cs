@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using MzansiGopro.Models;
 using MzansiGopro.Services;
 using Xamarin.Forms;
+using System.Threading.Tasks;
 
 namespace MzansiGopro.ViewModels.EventsVM
 {
@@ -48,11 +49,11 @@ namespace MzansiGopro.ViewModels.EventsVM
             getNews();
 
             SelectEvent = new Command<Events>(OnSelectEvent);
-            RefreshEvents = new Command(OnRefreshEvents);
+            RefreshEvents = new Command(async () => await OnRefreshEvents());
         }
 
 
-       async void OnRefreshEvents()
+       async Task OnRefreshEvents()
         {
             IsRefreshingEvent = true;
             UserDataBase userData = new UserDataBase();

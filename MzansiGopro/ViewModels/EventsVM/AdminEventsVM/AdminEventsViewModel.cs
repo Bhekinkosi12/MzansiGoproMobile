@@ -135,9 +135,9 @@ namespace MzansiGopro.ViewModels.EventsVM.AdminEventsVM
 
             var _user = RunTimeUser;
 
-            _user.EventsHoted.Add(_event);
+           
 
-            RunTimeUser = _user;
+            
 
 
             UserDataBase userData = new UserDataBase();
@@ -151,13 +151,18 @@ namespace MzansiGopro.ViewModels.EventsVM.AdminEventsVM
                 if(SelectedEvent != null)
                 {
                     await userData.UpdateEvent(SelectedEvent, _event);
+                    _user.EventsHoted.Remove(SelectedEvent);
+                    _user.EventsHoted.Add(_event);
                 }
                 else
                 {
 
                 await userData.AddEventAsync(_event);
+                    _user.EventsHoted.Add(_event);
                 }
-                
+
+                RunTimeUser = _user;
+
                 await Shell.Current.GoToAsync("..");
             }
             catch
