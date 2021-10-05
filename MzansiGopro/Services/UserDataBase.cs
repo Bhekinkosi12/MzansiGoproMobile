@@ -90,6 +90,26 @@ namespace MzansiGopro.Services
                 return null;
             }
         }
+        public async Task<Shop> GetShopById(string id)
+        {
+            try
+            {
+                var shop = (await client
+                    .Child("Users")
+                    .Child("IsBusiness")
+                    .OnceAsync<Shop>()).Where(x => x.Object.ID == id).FirstOrDefault();
+
+
+                return await Task.FromResult(shop.Object);
+
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+
 
         public async Task<bool> AddEventAsync(Events _event)
         {
@@ -113,9 +133,9 @@ namespace MzansiGopro.Services
 
         public async Task<List<Events>> GetAllEvents()
         {
+                List<Events> _events = new List<Events>();
             try
             {
-                List<Events> _events = new List<Events>();
 
                var list = (await client
                     .Child("Events")
@@ -141,7 +161,8 @@ namespace MzansiGopro.Services
             }
             catch
             {
-                return null;
+
+                return await Task.FromResult(_events);
             }
         }
 

@@ -173,7 +173,7 @@
 
 
 
-                    <RefreshView Grid.Row="1" IsRefreshing="{Binding IsRefreashing}"   Command="{Binding RefreshShop}">
+                    <RefreshView Grid.Row="1" IsRefreshing="{Binding IsRefreashing}"  Command="{Binding RefreshShop}">
                         <ScrollView>
                             <StackLayout Orientation="Horizontal">
                                 

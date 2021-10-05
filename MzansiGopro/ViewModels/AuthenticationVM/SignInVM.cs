@@ -508,7 +508,7 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
             try
             {
 
-          var link =  storage.AddStoreStream(RunTimeUser.CompanyName, picked.FileName, file as FileStream);
+          var link =  storage.AddStoreStream(RunTimeUser.Email, picked.FileName, file as FileStream);
 
                 var _image = new image()
                 {
@@ -552,7 +552,7 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
 
            
 
-                var link = await storage.AddStoreStream(RunTimeUser.CompanyName, picked.FileName, file as FileStream);
+                var link = await storage.AddStoreStream(RunTimeUser.Email, picked.FileName, file as FileStream);
 
 
 
@@ -579,7 +579,7 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
             CreateProgress = true;
             PasswordAbcHash abcHash = new PasswordAbcHash();
             UserDataBase userDB = new UserDataBase();
-
+            LocalUserService localDB = new LocalUserService();
 
 
             RunTimeUser.Location = Location;
@@ -647,6 +647,7 @@ namespace MzansiGopro.ViewModels.AuthenticationVM
 
             };
             RunTimeBusiness = shop;
+            localDB.AddBusiness(shop);
 
             try
             {

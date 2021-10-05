@@ -7,6 +7,7 @@ using MzansiGopro.Views.CompanyV;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MzansiGopro.ViewModels;
+using MzansiGopro.ViewModels.ProfileVM;
 
 namespace MzansiGopro.Views.ProfileV
 {
@@ -40,6 +41,9 @@ namespace MzansiGopro.Views.ProfileV
 
         protected override void OnAppearing()
         {
+            var model = BindingContext as ProfileViewModel;
+
+            model.OnIsLogged();
 
             base.OnAppearing();
         }

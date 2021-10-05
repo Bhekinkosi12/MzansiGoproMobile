@@ -23,6 +23,7 @@ namespace MzansiGopro.Views
         {
             LocalUserService localDB = new LocalUserService();
             localDB.GetLocalUser();
+            
 
             base.OnAppearing();
         }

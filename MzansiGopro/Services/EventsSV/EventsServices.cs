@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using MzansiGopro.Models;
+using System.Collections.ObjectModel;
 
 namespace MzansiGopro.Services.EventsSV
 {
@@ -10,12 +11,14 @@ namespace MzansiGopro.Services.EventsSV
         List<Events> Eventslist { get; set; }
         List<News> NewsEvents { get; set; }
 
+        
+
 
         public EventsServices()
         {
-           // tempData();
+            tempData();
             welcomeNews();
-            eventData();
+           // eventData();
         }
 
         void tempData()
@@ -50,12 +53,17 @@ namespace MzansiGopro.Services.EventsSV
 
        async void eventData()
         {
+            List<Events> _events = new List<Events>();
             UserDataBase userData = new UserDataBase();
 
-            var listEvent = await userData.GetAllEvents();
+           var items = await userData.GetAllEvents();
 
-            
-            Eventslist = listEvent;
+            foreach(var i in items)
+            {
+                _events.Add(i);
+            }
+
+            Eventslist = _events;
 
 
         }

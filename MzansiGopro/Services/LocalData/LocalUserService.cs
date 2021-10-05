@@ -26,10 +26,10 @@ namespace MzansiGopro.Services.LocalData
 
         public async void GetLocalUser()
         {
+                UserDataBase dataBase = new UserDataBase();
             try
             {
                var id = Preferences.Get("UserID", string.Empty);
-                UserDataBase dataBase = new UserDataBase();
 
                 var user = await dataBase.GetUserById(id);
 
@@ -44,6 +44,29 @@ namespace MzansiGopro.Services.LocalData
             {
                 RunTimeUser = null;
             }
+
+
+
+            try
+            {
+                var id = Preferences.Get("ShopId", string.Empty);
+                var _shop = await dataBase.GetShopById(id);
+
+                if(_shop != null)
+                {
+                    RunTimeBusiness = _shop;
+                }
+
+            }
+            catch
+            {
+                RunTimeBusiness = null;
+
+            }
+
+
+
+
         }
 
         public void ClearLocalDB()
@@ -59,11 +82,16 @@ namespace MzansiGopro.Services.LocalData
                 Preferences.Set("UserID", user.AutomatedId);
                 
             }
-            catch(Exception ex)
+            catch
             {
                 await Shell.Current.DisplayAlert("Error", $"Could not add user to local DB", "OK");
             }
             
+        }
+        public  void AddBusiness(Shop shop)
+        {
+            Preferences.Set("ShopId", shop.ID);
+
         }
 
 

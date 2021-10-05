@@ -4,19 +4,43 @@ using System.Text;
 using MzansiGopro.Services.EventsSV;
 using System.Collections.ObjectModel;
 using MzansiGopro.Models;
+using MzansiGopro.Services;
 using Xamarin.Forms;
 
 namespace MzansiGopro.ViewModels.EventsVM
 {
-   public class EventsListViewModel
+   public class EventsListViewModel : BaseViewModel
     {
 
-       public ObservableCollection<Events> EventsList { get; set; }
+
+         bool _isRefreshing;
+        public bool IsRefreshingEvent
+        {
+            get => _isRefreshing;
+            set
+            {
+                SetProperty(ref _isRefreshing, value);
+                OnPropertyChanged(nameof(IsRefreshingEvent));
+            }
+        }
+
+        ObservableCollection<Events> eventList = new ObservableCollection<Events>();
+
+       public ObservableCollection<Events> EventsList
+        {
+            get => eventList;
+            set
+            {
+                SetProperty(ref eventList, value);
+                OnPropertyChanged(nameof(EventsList));
+            }
+        }
         public ObservableCollection<News> NewsList { get; set; }
 
         static Events SelectedEvent { get; set; }
 
         public Command<Events> SelectEvent { get; set; }
+        public Command RefreshEvents { get; set; }
 
         public EventsListViewModel()
         {
@@ -24,10 +48,35 @@ namespace MzansiGopro.ViewModels.EventsVM
             getNews();
 
             SelectEvent = new Command<Events>(OnSelectEvent);
+            RefreshEvents = new Command(OnRefreshEvents);
         }
 
 
+       async void OnRefreshEvents()
+        {
+            IsRefreshingEvent = true;
+            UserDataBase userData = new UserDataBase();
+            try
+            {
+                var list = await userData.GetAllEvents();
 
+                EventsList.Clear();
+
+                foreach(var i in list)
+                {
+                    EventsList.Add(i);
+                }
+
+                
+            }
+            catch
+            {
+                await Shell.Current.DisplayAlert("Error", "Could not refreash", "OK");
+            }
+
+            IsRefreshingEvent = false;
+
+        }
 
         void getData()
         {

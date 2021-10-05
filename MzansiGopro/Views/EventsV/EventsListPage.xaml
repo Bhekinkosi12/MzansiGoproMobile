@@ -21,7 +21,10 @@
                 <Label Text="Events" TextColor="{StaticResource text}" FontSize="30" FontFamily="cursive" HorizontalOptions="Center" VerticalOptions="Center" />
 
 
-            <ScrollView Grid.Row="1">
+            <Frame Padding="0" BackgroundColor="Transparent" Grid.Row="1" >
+                <RefreshView IsRefreshing="{Binding IsRefreshingEvent}"  Command="{Binding RefreshEvents}" IsEnabled="{Binding IsRefreshingEvent}" x:Name="eventRefresh" >
+                    
+            <ScrollView >
                 <StackLayout>
 
 
@@ -98,9 +101,9 @@
                 <CollectionView Grid.Row="1" ItemsSource="{Binding EventsList}">
 
                     <CollectionView.EmptyView>
-                        <DataTemplate>
+                        
                             <Label Text="No Events for now" TextColor="#191919" HorizontalOptions="Center" />
-                        </DataTemplate>
+                        
                     </CollectionView.EmptyView>
 
                     <CollectionView.ItemsLayout>
@@ -126,6 +129,9 @@
                 </CollectionView>
                 </StackLayout>
             </ScrollView>
+                </RefreshView>
+                
+            </Frame>
 
                 
             
