@@ -13,7 +13,7 @@ namespace MzansiGopro.Services.BusinessData
 
         public MainBusinessDataBase()
         {
-            client = new FirebaseClient("https://mzansi-go-pro-default-rtdb.firebaseio.com/");
+            client = new FirebaseClient("sensetive");
         }
 
 
