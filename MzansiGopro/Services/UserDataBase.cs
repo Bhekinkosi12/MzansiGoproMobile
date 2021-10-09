@@ -18,16 +18,7 @@ namespace MzansiGopro.Services
 
         public UserDataBase()
         {
-          //  var auth = "kasiT";
-
-            /*
-            client = new FirebaseClient("https://mzansi-go-pro-default-rtdb.firebaseio.com/", new FirebaseOptions
-            {
-                AuthTokenAsyncFactory = () => Task.FromResult(auth)
-            }) ;
-            */
-
-            client = new FirebaseClient("https://mzansi-go-pro-default-rtdb.firebaseio.com/");
+          //sensetive information removed
         }
 
 
