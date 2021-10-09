@@ -29,7 +29,7 @@ namespace MzansiGopro.Services
 
         public FirebaseStorageTask AddStoreStream(string userConfigID,string name, Stream stream)
         {
-            return new FirebaseStorage("mzansi-go-pro.appspot.com")
+            return new FirebaseStorage("sensetive")
                 .Child("Compony")
                 .Child(userConfigID)
                 .Child(name)
@@ -39,7 +39,7 @@ namespace MzansiGopro.Services
         }
         public FirebaseStorageTask AddStoreStream(string userConfigID, string name, FileStream stream)
         {
-            return new FirebaseStorage("mzansi-go-pro.appspot.com")
+            return new FirebaseStorage("sensetive")
                 .Child("Compony")
                 .Child(userConfigID)
                 .Child(name)
@@ -50,7 +50,7 @@ namespace MzansiGopro.Services
 
         public Task<FirebaseStorageTask> AddStoreStreamAsync(string userConfigID, string name, Stream stream)
         {
-            return Task.FromResult(new FirebaseStorage("mzansi-go-pro.appspot.com")
+            return Task.FromResult(new FirebaseStorage("sensetive")
                 .Child("Compony")
                   .Child(userConfigID)
                 .Child(name)
